@@ -7,8 +7,8 @@ import naacLogo from "@/assets/logo/naac.svg";
 import revaUniversitySvg from "@/assets/logo/reva-university.svg";
 import revaRiftSvg from "@/assets/logo/reva-rift.svg";
 import logoUniversity from "@/assets/logo/reva-university.svg";
-import logoFull from "@/assets/logo/reva-logo-black.svg";
-import logo2ndMain from "@/assets/logo/2nd_main_3.png";
+import logoFull from "@/assets/logo/2nd_main_3.png";
+import logo2ndMain from "@/assets/logo/reva-logo-black.svg";
 import gdgRevaLogo from "@/assets/logo/gdg-reva.svg";
 import partnerSampleLogo from "@/assets/images/partners/sample.svg";
 import vectorTop from "@/assets/elements/vector-top.svg";
@@ -59,14 +59,14 @@ const HeroSection = () => {
 
       <div className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center">
         
-        {/* Navbar-aligned logo (2nd_main_3) - Purely visual, technically in Hero */}
+        {/* Navbar-aligned logo (knot logo) - Purely visual, technically in Hero */}
         <div className="absolute top-0 left-0 right-0 h-16 z-[60] pointer-events-none flex items-center">
           <div className="container max-w-7xl mx-auto flex items-center px-4">
-            {/* Invisible spacer to match navbar's logo wordmark width */}
-            <img src={logoFull} alt="" className="h-8 md:h-9 opacity-0 invisible" />
+            {/* Invisible spacer to match navbar's blue logo wordmark width */}
+            <img src={logoFull} alt="" className="h-11 md:h-14 opacity-0 invisible" />
             {/* Adjusted gap on mobile, keeping 2px on desktop */}
             <div className="w-3 md:w-[2px]" />
-            <img src={logo2ndMain} alt="" className="h-11 md:h-14" />
+            <img src={logo2ndMain} alt="" className="h-8 md:h-9" />
           </div>
         </div>
 

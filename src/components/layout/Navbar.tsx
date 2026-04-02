@@ -1,7 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
-import logoBlack from "@/assets/logo/reva-logo-black.svg";
+import logoLight from "@/assets/logo/2nd_main_3.png";
+import logoDark from "@/assets/logo/2nd_main_white.png";
 import StaggeredMenu, { StaggeredMenuItem } from "@/components/ui/StaggeredMenu";
 
 const navLinks = [
@@ -136,15 +137,20 @@ const Navbar = () => {
             }
           }}
         >
-          <img
-            src={logoBlack}
-            alt="REVA RIFT"
-            className="h-8 md:h-9"
-            style={{
-              filter: isInverted ? "invert(1) brightness(10)" : "none",
-              transition: "filter 0.4s ease",
-            }}
-          />
+          <div className="relative h-11 md:h-14">
+            <img
+              src={logoLight}
+              alt="REVA RIFT"
+              className="h-full w-auto transition-opacity duration-500"
+              style={{ opacity: isInverted ? 0 : 1 }}
+            />
+            <img
+              src={logoDark}
+              alt="REVA RIFT"
+              className="absolute top-0 left-0 h-full w-auto transition-opacity duration-500"
+              style={{ opacity: isInverted ? 1 : 0 }}
+            />
+          </div>
         </Link>
 
         {/* Navigation */}
