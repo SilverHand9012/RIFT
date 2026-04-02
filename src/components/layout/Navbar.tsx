@@ -143,7 +143,7 @@ const Navbar = () => {
           <img
             src={logoLight}
             alt="REVA RIFT"
-            className="h-9 md:h-12 w-auto object-contain"
+            className="h-11 md:h-12 w-auto object-contain"
           />
         </Link>
 

@@ -67,6 +67,11 @@ html, body, * {
   -ms-overflow-style: none !important; /* IE/Edge */
 }
 
+html, body {
+  overflow-x: hidden;
+  max-width: 100%;
+}
+
 html::-webkit-scrollbar, 
 body::-webkit-scrollbar,
 *::-webkit-scrollbar {
@@ -235,11 +240,11 @@ body::-webkit-scrollbar,
 }
 
 .site-lines::before {
-  left: max(calc((100vw - 1200px) / 2), 1rem);
+  left: max(calc((100% - 1200px) / 2), 1rem);
 }
 
 .site-lines::after {
-  right: max(calc((100vw - 1200px) / 2), 1rem);
+  right: max(calc((100% - 1200px) / 2), 1rem);
 }
 
 /* Dark sections get their own lighter lines */
@@ -282,11 +287,11 @@ body::-webkit-scrollbar,
 }
 
 .dark-section-lines::before {
-  left: max(calc((100vw - 1200px) / 2), 1rem);
+  left: max(calc((100% - 1200px) / 2), 1rem);
 }
 
 .dark-section-lines::after {
-  right: max(calc((100vw - 1200px) / 2), 1rem);
+  right: max(calc((100% - 1200px) / 2), 1rem);
 }
 
 /* Marquee animation */

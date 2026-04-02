@@ -31,9 +31,9 @@ const TransitionBackground = () => (
       />
     </div>
 
-    {/* Bottom Tagline anchored securely */}
-    <div className="absolute bottom-[8%] md:bottom-[12%] inset-x-0 w-full flex justify-center">
-      <p className="text-white font-outfit text-lg sm:text-2xl md:text-3xl font-medium tracking-wide">
+    {/* Bottom Tagline anchored securely - hidden on mobile */}
+    <div className="absolute bottom-[8%] md:bottom-[12%] inset-x-0 w-full hidden md:flex justify-center">
+      <p className="text-white font-outfit text-lg sm:text-2xl md:text-3xl font-medium tracking-wide text-center px-6">
         Where Ordinary Breaks.
       </p>
     </div>
