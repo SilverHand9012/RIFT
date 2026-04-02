@@ -75,24 +75,16 @@ const Navbar = () => {
     }
 
     if (!isHomePage) {
-      setTimeout(() => {
-        navigate("/");
-        setTimeout(() => {
-          navigate(`/${link.href}`, { replace: true });
-        }, 400);
-      }, 100);
+      // Just navigate to the hash route immediately.
+      // ScrollToTop and SmoothScroll will pick up the hash and animate
+      // after the page transition finishes.
+      navigate(`/${link.href}`);
       return;
     }
 
-    const targetId = link.href.replace("#", "");
-    const targetElement = document.getElementById(targetId);
-
-    if (targetElement) {
-      setTimeout(() => {
-        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
-        window.history.replaceState(null, "", link.href);
-      }, 150);
-    }
+    // When on the home page, just use standard navigate to update the hash.
+    // SmoothScroll.tsx and ScrollToTop.tsx will handle the rest.
+    navigate(link.href);
   };
 
   const staggeredMenuItems: StaggeredMenuItem[] = navLinks.map((link) => ({

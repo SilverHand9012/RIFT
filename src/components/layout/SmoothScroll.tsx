@@ -60,16 +60,34 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
     };
   }, []);
 
+  const lastPathname = useRef(pathname);
+
   // Handle route changes and hash scrolling
   useEffect(() => {
-    if (lenisRef.current) {
-      if (hash) {
-        // Direct hash string works with Lenis scrollTo
-        lenisRef.current.scrollTo(hash);
+    if (!lenisRef.current) return;
+
+    if (hash) {
+      // If we are coming from a different page, wait for the transition curtain to clear
+      // and for the home components to mount their layout properly.
+      const isCrossPageNav = lastPathname.current !== pathname;
+      
+      if (isCrossPageNav) {
+        setTimeout(() => {
+          lenisRef.current?.scrollTo(hash, {
+            duration: 1.5,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+          });
+        }, 800); // 800ms delay allows PageTransition and mounting to finish
       } else {
-        lenisRef.current.scrollTo(0, { immediate: true });
+        // Same-page hash click — scroll immediately
+        lenisRef.current.scrollTo(hash);
       }
+    } else {
+      // If no hash, just jump to top (controlled)
+      lenisRef.current.scrollTo(0, { immediate: true });
     }
+    
+    lastPathname.current = pathname;
   }, [pathname, hash]);
 
   return <>{children}</>;
