@@ -120,7 +120,7 @@ const Navbar = () => {
     : "bg-gradient-to-b from-white/60 to-transparent border-b border-transparent backdrop-blur-[2px]";
 
   const linkClass = `nav-link text-sm font-semibold py-1 transition-colors duration-300 ${
-    isInverted ? "text-white/90 hover:text-white" : "text-foreground hover:text-primary"
+    isInverted ? "text-white/90 hover:text-white" : "text-foreground hover:text-foreground/80"
   }`;
 
   return (
@@ -149,14 +149,8 @@ const Navbar = () => {
 
         {/* Navigation */}
         <div className="flex items-center">
-          {/* Desktop links — hidden when scrolled */}
-          <div
-            className={`hidden md:flex items-center gap-10 transition-all duration-300 ${
-              scrolled
-                ? "opacity-0 w-0 overflow-hidden pointer-events-none"
-                : "opacity-100 mr-4"
-            }`}
-          >
+          {/* Desktop links — always visible on md+ */}
+          <div className="hidden md:flex items-center gap-10 transition-all duration-300 opacity-100 mr-4">
             {navLinks.map((link) =>
               link.type === "route" ? (
                 <Link key={link.label} to={link.href} className={linkClass}>
@@ -175,14 +169,8 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Hamburger — always visible on mobile, appears on desktop when scrolled */}
-          <div
-            className={`transition-all duration-300 opacity-100 ${
-              !scrolled
-                ? "md:opacity-0 md:w-0 md:overflow-hidden md:pointer-events-none"
-                : "w-auto"
-            }`}
-          >
+          {/* Hamburger — only visible on mobile (below md) */}
+          <div className="block md:hidden">
             <StaggeredMenu
               items={staggeredMenuItems}
               inverted={isInverted}
