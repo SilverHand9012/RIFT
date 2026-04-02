@@ -1,0 +1,283 @@
+:root {
+  --sm-bg: hsl(var(--background));
+  --sm-text: hsl(var(--foreground));
+  --sm-accent: hsl(var(--primary));
+  --sm-toggle-bg: hsl(var(--card));
+}
+
+.staggered-menu-container {
+  position: relative;
+  z-index: 1000;
+}
+
+.sm-toggle {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background: var(--sm-toggle-bg);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 0.6rem 1.2rem;
+  border-radius: 100px;
+  cursor: pointer;
+  color: var(--sm-text);
+  font-family: inherit;
+  transition: all 0.3s ease;
+  overflow: hidden;
+}
+
+.sm-toggle:hover {
+  background: hsl(var(--muted));
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Inverted state — used when navbar sits over a dark section */
+.sm-toggle.is-inverted {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: rgba(255, 255, 255, 0.25);
+  color: #ffffff;
+}
+
+.sm-toggle.is-inverted:hover {
+  background: rgba(255, 255, 255, 0.2);
+  border-color: rgba(255, 255, 255, 0.4);
+}
+
+.sm-toggle.is-inverted .sm-toggle-icon {
+  background: #ffffff;
+}
+
+.sm-toggle-text {
+  position: relative;
+  height: 1.2em;
+  overflow: hidden;
+  min-width: 45px;
+}
+
+.sm-toggle-label, .sm-toggle-close {
+  display: block;
+  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.sm-toggle-close {
+  position: absolute;
+  top: 100%;
+  left: 0;
+}
+
+.sm-toggle.is-active .sm-toggle-label {
+  transform: translateY(-100%);
+}
+
+.sm-toggle.is-active .sm-toggle-close {
+  transform: translateY(-100%);
+}
+
+.sm-toggle-icon {
+  width: 20px;
+  height: 2px;
+  background: var(--sm-text);
+  position: relative;
+  transition: background 0.3s ease;
+}
+
+.sm-toggle-icon::before, .sm-toggle-icon::after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: currentColor;
+  left: 0;
+  transition: transform 0.3s ease;
+}
+
+.sm-toggle-icon::before { top: -6px; }
+.sm-toggle-icon::after { top: 6px; }
+
+.sm-toggle.is-active .sm-toggle-icon {
+  background: transparent;
+}
+
+.sm-toggle.is-active .sm-toggle-icon::before {
+  transform: translateY(6px) rotate(45deg);
+}
+
+.sm-toggle.is-active .sm-toggle-icon::after {
+  transform: translateY(-6px) rotate(-45deg);
+}
+
+/* Backdrop overlay — dims the rest of the page */
+.sm-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.5);
+  z-index: -2;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.4s ease;
+}
+
+.sm-backdrop.is-visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Right-side slide-in panel */
+.staggered-menu-panel {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 400px;
+  height: 100vh;
+  background: rgba(255, 255, 255, 0.98);
+  backdrop-filter: blur(20px);
+  transform: translateX(100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  z-index: -1;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  box-shadow: -10px 0 40px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 768px) {
+  .staggered-menu-panel {
+    width: 80vw;
+  }
+}
+
+.sm-panel-content {
+  width: 100%;
+  padding: 5rem 2.5rem 2.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  height: 100%;
+}
+
+.sm-panel-list {
+  list-style: none;
+  padding: 2rem 0 0;
+  margin: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.sm-panel-item {
+  margin-bottom: 0.5rem;
+  overflow: hidden;
+  position: relative;
+}
+
+.sm-panel-link {
+  font-size: clamp(1.6rem, 3.5vw, 2.4rem);
+  font-weight: 700;
+  font-family: 'Monument Extended', sans-serif;
+  color: rgba(0, 0, 0, 0.85);
+  text-decoration: none;
+  display: block;
+  line-height: 1.1;
+  padding: 0.8rem 0;
+  transition: color 0.3s ease, padding-left 0.3s ease;
+  letter-spacing: -0.02em;
+}
+
+.sm-panel-link:hover {
+  color: var(--sm-accent);
+  padding-left: 0.5rem;
+}
+
+.sm-panel-itemLabel {
+  display: inline-block;
+}
+
+.sm-panel-footer {
+  padding: 1.2rem 0 0;
+}
+
+
+.sm-socials-list {
+  display: flex;
+  gap: 1.5rem;
+  list-style: none;
+  padding: 0;
+}
+
+.sm-socials-link {
+  color: rgba(0, 0, 0, 0.5);
+  text-decoration: none;
+  font-size: 1.1rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: block;
+}
+
+.sm-socials-link:hover {
+  color: rgba(0, 0, 0, 0.9);
+  transform: translateY(-3px);
+}
+
+.sm-panel-list[data-numbering] {
+  counter-reset: smItem;
+}
+
+.sm-panel-list[data-numbering] .sm-panel-item::after {
+  counter-increment: smItem;
+  content: counter(smItem, decimal-leading-zero);
+  position: absolute;
+  top: 50%;
+  right: 0.5rem;
+  transform: translateY(-50%);
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--sm-accent);
+  opacity: 1;
+}
+
+/* Bottom block — secondary links + socials pinned to bottom */
+.sm-panel-bottom {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Secondary links */
+.sm-secondary-links {
+  padding-top: 0;
+  border-top: 1px solid rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+}
+
+.sm-secondary-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.85rem 0;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  color: rgba(0, 0, 0, 0.65);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease, padding-left 0.2s ease;
+}
+
+.sm-secondary-link:hover {
+  color: var(--sm-accent);
+  padding-left: 0.25rem;
+}
+
+.sm-secondary-arrow {
+  width: 15px;
+  height: 15px;
+  flex-shrink: 0;
+  opacity: 0.5;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.sm-secondary-link:hover .sm-secondary-arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+}
