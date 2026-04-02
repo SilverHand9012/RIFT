@@ -12,7 +12,7 @@ const Events = ({ embedded = false }: { embedded?: boolean }) => {
   }, [embedded]);
 
   return (
-    <div className="bg-black min-h-screen text-white font-outfit overflow-hidden">
+    <div className="bg-black min-h-screen text-white font-outfit overflow-hidden" data-theme="dark">
       {!embedded && <Navbar />}
       
       <div className={embedded ? "pt-8 pb-12" : "pt-24 pb-12"}>
