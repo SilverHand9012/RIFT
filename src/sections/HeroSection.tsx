@@ -4,7 +4,6 @@ import { Link } from "react-router-dom";
 import naacLogo from "@/assets/logo/naac.svg";
 import revaUniversitySvg from "@/assets/logo/reva-university.svg";
 import revaRiftSvg from "@/assets/logo/reva-rift.svg";
-import logoUniversity from "@/assets/logo/reva-university.svg";
 import logoFull from "@/assets/logo/2nd_main_3.png";
 import logo2ndMain from "@/assets/logo/reva-logo-black.svg";
 import gdgRevaLogo from "@/assets/logo/gdg-reva.svg";
@@ -36,7 +35,7 @@ const HeroSection = () => {
 
   const titleWordVariants = {
     hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } }
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }
   };
 
   return (

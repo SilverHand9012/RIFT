@@ -7,13 +7,11 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import Index from "./pages/Index";
 import FAQs from "./pages/FAQs";
-// import Jury from "./pages/Jury";
-// import Team from "./pages/Team";
+
 import Workshops from "./pages/Workshops";
 import Divisions from "./pages/Divisions";
 import PreSummit from "./pages/PreSummit";
-// import Signup from "./pages/Signup";
-// import Login from "./pages/Login";
+
 import Events from "./pages/Events";
 import NotFound from "./pages/NotFound";
 
@@ -32,13 +30,11 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/faqs" element={<PageTransition><FAQs /></PageTransition>} />
-        {/* <Route path="/jury" element={<PageTransition><Jury /></PageTransition>} />
-        <Route path="/team" element={<PageTransition><Team /></PageTransition>} /> */}
+
         <Route path="/workshops" element={<PageTransition><Workshops /></PageTransition>} />
         <Route path="/divisions" element={<PageTransition><Divisions /></PageTransition>} />
         <Route path="/presummit" element={<PageTransition><PreSummit /></PageTransition>} />
-        {/* <Route path="/login" element={<PageTransition><Login /></PageTransition>} />
-        <Route path="/signup" element={<PageTransition><Signup /></PageTransition>} /> */}
+
         <Route path="/events" element={<PageTransition><Events /></PageTransition>} />
         <Route path="*" element={<PageTransition><NotFound /></PageTransition>} />
       </Routes>

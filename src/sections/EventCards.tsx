@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronRight, Calendar, ArrowRight, Info } from "lucide-react";
+import { Calendar, Info } from "lucide-react";
 import {
   ExpandableScreen,
   ExpandableScreenTrigger,
