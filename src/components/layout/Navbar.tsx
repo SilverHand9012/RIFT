@@ -113,7 +113,7 @@ const Navbar = () => {
   const navBg = !scrolled
     ? "bg-transparent border-b border-transparent"
     : isInverted
-    ? "bg-gradient-to-b from-black/40 to-transparent border-b border-transparent"
+    ? "bg-gradient-to-b from-black/40 to-transparent border-b border-transparent backdrop-blur-[2px]"
     : "bg-gradient-to-b from-white/60 to-transparent border-b border-transparent backdrop-blur-[2px]";
 
   const linkClass = `nav-link text-sm font-semibold py-1 transition-colors duration-300 ${
