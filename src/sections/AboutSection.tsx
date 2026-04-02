@@ -37,7 +37,7 @@ const AboutSection = () => {
               <motion.img
                 src={revaUniversityImage}
                 alt="REVA University"
-                className="w-full h-[260px] md:h-[320px] object-cover rounded-md border border-border/60"
+                className="w-full h-[260px] md:h-[320px] object-cover rounded-md border border-border/60 grayscale"
               />
             </motion.div>
           </motion.div>
