@@ -14,12 +14,12 @@ const TransitionBackground = () => (
     <img 
       src={vectorTopWhite} 
       alt="" 
-      className="absolute top-[-5%] right-[-5%] w-[60%] sm:w-[40%] md:w-[35%] lg:w-[25%] max-w-[500px]" 
+      className="absolute top-0 right-0 h-auto w-auto max-w-[70%] max-h-[35vh] sm:max-w-[50%] md:max-w-[40%] lg:max-w-[500px] object-contain object-right-top" 
     />
     <img 
       src={vectorBottomWhite} 
       alt="" 
-      className="absolute bottom-[-10%] left-[-15%] w-[80%] sm:w-[50%] md:w-[35%] lg:w-[25%] max-w-[550px]" 
+      className="absolute bottom-0 left-0 h-auto w-auto max-w-[85%] max-h-[35vh] sm:max-w-[60%] md:max-w-[45%] lg:max-w-[550px] object-contain object-left-bottom" 
     />
 
     {/* Center Center Area for the Logo */}
@@ -27,7 +27,7 @@ const TransitionBackground = () => (
       <img 
         src={revaRiftWhite} 
         alt="REVA RIFT" 
-        className="h-[40px] sm:h-[55px] md:h-[80px] lg:h-[100px] w-auto" 
+        className="h-[40px] sm:h-[55px] md:h-[80px] lg:h-[100px] w-auto max-w-[80vw] object-contain" 
       />
     </div>
 
