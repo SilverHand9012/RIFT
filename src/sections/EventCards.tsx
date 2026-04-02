@@ -33,11 +33,11 @@ function EventCard({ card }: { card: (typeof eventsData)[number] }) {
       contentRadius="24px"
       animationDuration={0.4}
     >
-      <ExpandableScreenTrigger>
+      <ExpandableScreenTrigger className="h-full w-full flex flex-col">
         <div
-          className="group w-full rounded-xl overflow-hidden cursor-pointer border border-white/10 bg-[#060C1A] hover:border-white/20 transition-all duration-300"
+          className="group w-full h-full flex flex-col rounded-xl overflow-hidden cursor-pointer border border-white/10 bg-[#060C1A] hover:border-white/20 transition-all duration-300"
         >
-          <div className="aspect-video overflow-hidden">
+          <div className="aspect-video overflow-hidden shrink-0">
             <img
               src={card.image}
               alt={card.name}
@@ -46,10 +46,10 @@ function EventCard({ card }: { card: (typeof eventsData)[number] }) {
             />
           </div>
 
-          <div className="px-5 py-5 space-y-4">
-            <div className="flex items-center justify-between gap-3">
+          <div className="px-5 py-5 flex flex-col grow space-y-4">
+            <div className="flex items-start justify-between gap-3">
               <h3
-                className="text-lg font-bold text-white leading-none"
+                className="text-lg font-bold text-white leading-tight"
                 style={{ fontFamily: "'BL Melody', sans-serif" }}
               >
                 {card.name}
@@ -61,7 +61,7 @@ function EventCard({ card }: { card: (typeof eventsData)[number] }) {
               </span>
             </div>
             
-            <div className="space-y-3">
+            <div className="space-y-3 flex-1 flex flex-col justify-end">
               <p className="text-xs text-gray-400 font-medium">{card.description}</p>
               <div className="flex items-center gap-1.5 text-[#3077FF] text-[11px] font-semibold group-hover:text-white transition-colors">
                 View Details
@@ -234,12 +234,11 @@ const EventCards = ({ hideExploreButton = false }: EventCardsProps) => {
             <button
               key={filter}
               onClick={() => setActiveFilter(filter)}
-              className={`px-5 py-2 rounded-full font-medium text-sm ${
+              className={`btn-shine relative inline-flex items-center justify-center rounded-full font-semibold text-xs sm:text-sm px-6 py-2 border-2 transition-all duration-300 ${
                 activeFilter === filter
-                  ? "bg-[#0052FF] text-white"
-                  : "bg-transparent text-gray-300 border border-white/15 hover:border-white/30"
+                  ? "border-[#0052FF] bg-[#0052FF] text-white hover:bg-white hover:text-[#0052FF] hover:border-white"
+                  : "border-white/20 bg-transparent text-white hover:border-white hover:bg-white/10"
               }`}
-              style={{ transition: "all 0.3s ease" }}
             >
               {filter}
             </button>
@@ -259,12 +258,15 @@ const EventCards = ({ hideExploreButton = false }: EventCardsProps) => {
             {filteredEvents.map((card, idx) => (
               <motion.div
                 key={card.id}
+                className="flex h-full w-full"
                 initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1, duration: 0.5 }}
               >
-                <EventCard card={card} />
+                <div className="flex-1 w-full flex flex-col">
+                  <EventCard card={card} />
+                </div>
               </motion.div>
             ))}
           </motion.div>

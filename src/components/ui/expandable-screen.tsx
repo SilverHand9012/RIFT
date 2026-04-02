@@ -135,7 +135,7 @@ export function ExpandableScreenTrigger({
         >
           <motion.div
             style={{ borderRadius: triggerRadius }}
-            className="relative cursor-pointer"
+            className="relative cursor-pointer h-full w-full flex flex-col"
           >
             {children}
           </motion.div>
