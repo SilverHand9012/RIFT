@@ -13,98 +13,57 @@
 .sm-toggle {
   display: flex;
   align-items: center;
-  gap: 1rem;
-  background: var(--sm-toggle-bg);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  padding: 0.6rem 1.2rem;
-  border-radius: 100px;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  padding: 0.5rem; /* Keeps a good clickable area without visual bulk */
   cursor: pointer;
   color: var(--sm-text);
   font-family: inherit;
-  transition: all 0.3s ease;
+  transition: opacity 0.3s ease, filter 0.3s ease;
   overflow: hidden;
 }
 
 .sm-toggle:hover {
-  background: hsl(var(--muted));
-  border-color: rgba(255, 255, 255, 0.2);
+  opacity: 0.7;
 }
 
 /* Inverted state — used when navbar sits over a dark section */
 .sm-toggle.is-inverted:not(.is-active) {
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.25);
   color: #ffffff;
 }
 
 .sm-toggle.is-inverted:not(.is-active):hover {
-  background: rgba(255, 255, 255, 0.2);
-  border-color: rgba(255, 255, 255, 0.4);
+  opacity: 0.8;
 }
 
 .sm-toggle.is-inverted:not(.is-active) .sm-toggle-icon {
   background: #ffffff;
 }
 
-.sm-toggle-text {
-  position: relative;
-  height: 1.2em;
-  overflow: hidden;
-  min-width: 45px;
+
+
+/* Grid icon — replaces old hamburger lines */
+.sm-toggle-icon-grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.4s cubic-bezier(0.19, 1, 0.22, 1);
 }
 
-.sm-toggle-label, .sm-toggle-close {
+.sm-grid-icon-img {
   display: block;
-  transition: transform 0.5s cubic-bezier(0.19, 1, 0.22, 1);
-  font-size: 0.9rem;
-  font-weight: 500;
+  transition: filter 0.3s ease;
 }
 
-.sm-toggle-close {
-  position: absolute;
-  top: 100%;
-  left: 0;
+/* Invert the icon when navbar is over a dark section */
+.sm-toggle.is-inverted:not(.is-active) {
+  color: #ffffff;
+  filter: invert(1) brightness(2);
 }
 
-.sm-toggle.is-active .sm-toggle-label {
-  transform: translateY(-100%);
-}
-
-.sm-toggle.is-active .sm-toggle-close {
-  transform: translateY(-100%);
-}
-
-.sm-toggle-icon {
-  width: 20px;
-  height: 2px;
-  background: var(--sm-text);
-  position: relative;
-  transition: background 0.3s ease;
-}
-
-.sm-toggle-icon::before, .sm-toggle-icon::after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background: currentColor;
-  left: 0;
-  transition: transform 0.3s ease;
-}
-
-.sm-toggle-icon::before { top: -6px; }
-.sm-toggle-icon::after { top: 6px; }
-
-.sm-toggle.is-active .sm-toggle-icon {
-  background: transparent;
-}
-
-.sm-toggle.is-active .sm-toggle-icon::before {
-  transform: translateY(6px) rotate(45deg);
-}
-
-.sm-toggle.is-active .sm-toggle-icon::after {
-  transform: translateY(-6px) rotate(-45deg);
+.sm-toggle.is-active .sm-toggle-icon-grid {
+  transform: rotate(45deg);
 }
 
 /* Backdrop overlay — dims the rest of the page */

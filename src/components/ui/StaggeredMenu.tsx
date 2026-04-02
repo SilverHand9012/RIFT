@@ -1,6 +1,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { gsap } from 'gsap';
 import { ArrowUpRight } from 'lucide-react';
+import gridMenuIcon from '@/assets/elements/grid-menu-icon.png';
 
 import './StaggeredMenu.css';
 
@@ -158,12 +159,8 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
         onClick={toggleMenu}
         aria-label={isOpen ? "Close menu" : "Open menu"}
       >
-        <span className="sm-toggle-text">
-          <span className="sm-toggle-label">{logo}</span>
-          <span className="sm-toggle-close">Close</span>
-        </span>
-        <span className="sm-toggle-icon">
-          <span className="sm-toggle-line"></span>
+        <span className="sm-toggle-icon-grid">
+          <img src={gridMenuIcon} alt="" className="sm-grid-icon-img h-11 w-11 md:h-12 md:w-12 object-contain" style={{ imageRendering: "auto" }} />
         </span>
       </button>
 

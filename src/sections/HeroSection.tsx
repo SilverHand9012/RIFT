@@ -1,3 +1,4 @@
+import { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
 
@@ -21,9 +22,23 @@ const partners = [
 ];
 
 const HeroSection = () => {
-  const { scrollY } = useScroll();
-  const yTop = useTransform(scrollY, [0, 1000], [0, 150]);
-  const yBottom = useTransform(scrollY, [0, 1000], [0, -150]);
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Track scroll progress of this section (0 = top of section visible, 1 = section scrolled out)
+  const { scrollYProgress } = useScroll({
+    target: sectionRef,
+    offset: ["start start", "end start"], // from when section top hits viewport top → section bottom hits viewport top
+  });
+
+  // Blue vectors: independent parallax drift
+  const yTop = useTransform(scrollYProgress, [0, 1], [0, 150]);
+  const yBottom = useTransform(scrollYProgress, [0, 1], [0, -150]);
+
+  // Hero content: scroll-driven fade-out + scale-down ("pulling away" effect)
+  // Starts fading at 10% scroll, fully gone by 70%
+  const contentOpacity = useTransform(scrollYProgress, [0, 0.15, 0.65], [1, 1, 0]);
+  const contentScale = useTransform(scrollYProgress, [0, 0.65], [1, 0.92]);
+  const contentY = useTransform(scrollYProgress, [0, 0.65], [0, -40]);
 
   const titleContainerVariants = {
     hidden: { opacity: 0 },
@@ -39,8 +54,11 @@ const HeroSection = () => {
   };
 
   return (
-    <section className="relative h-screen min-h-[900px] border-b border-border overflow-hidden bg-white">
-      {/* Background Decor */}
+    <section
+      ref={sectionRef}
+      className="relative h-screen min-h-[900px] border-b border-border overflow-hidden bg-white"
+    >
+      {/* Background Decor — own parallax, not affected by content fade */}
       <motion.img 
         src={vectorTop} 
         alt="" 
@@ -60,7 +78,15 @@ const HeroSection = () => {
         className="hidden md:block absolute bottom-0 left-0 w-[35vw] max-w-[600px] object-contain pointer-events-none z-0" 
       />
 
-      <div className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center">
+      {/* Main hero content — scroll-driven fade-out + scale-down */}
+      <motion.div
+        style={{
+          opacity: contentOpacity,
+          scale: contentScale,
+          y: contentY,
+        }}
+        className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center will-change-transform"
+      >
         
         {/* Navbar-aligned logo (knot logo) - Purely visual, technically in Hero */}
         <div className="absolute top-0 left-0 right-0 h-16 z-[60] pointer-events-none flex items-center">
@@ -69,7 +95,7 @@ const HeroSection = () => {
             <img src={logoFull} alt="" className="h-9 md:h-12 opacity-0 invisible object-contain" />
             {/* Adjusted gap on mobile, keeping 2px on desktop */}
             <div className="w-3 md:w-[2px]" />
-            <img src={logo2ndMain} alt="" className="h-8 md:h-9" />
+            <img src={logo2ndMain} alt="" className="h-8 md:h-9 hidden md:block" />
           </div>
         </div>
 
@@ -187,7 +213,7 @@ const HeroSection = () => {
             </div>
           </motion.div>
         </div>
-      </div>
+      </motion.div>
 
       {/* Marquee pinned to the absolute bottom of the Hero page */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
@@ -198,3 +224,4 @@ const HeroSection = () => {
 };
 
 export default HeroSection;
+
