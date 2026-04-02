@@ -31,18 +31,18 @@
 }
 
 /* Inverted state — used when navbar sits over a dark section */
-.sm-toggle.is-inverted {
+.sm-toggle.is-inverted:not(.is-active) {
   background: rgba(255, 255, 255, 0.12);
   border-color: rgba(255, 255, 255, 0.25);
   color: #ffffff;
 }
 
-.sm-toggle.is-inverted:hover {
+.sm-toggle.is-inverted:not(.is-active):hover {
   background: rgba(255, 255, 255, 0.2);
   border-color: rgba(255, 255, 255, 0.4);
 }
 
-.sm-toggle.is-inverted .sm-toggle-icon {
+.sm-toggle.is-inverted:not(.is-active) .sm-toggle-icon {
   background: #ffffff;
 }
 
