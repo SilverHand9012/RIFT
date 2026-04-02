@@ -1,8 +1,6 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ExpandableScreen, ExpandableScreenTrigger, ExpandableScreenContent } from "@/components/ui/expandable-screen";
-import Workshops from "@/pages/Workshops";
-import Events from "@/pages/Events";
+
 import naacLogo from "@/assets/logo/naac.svg";
 import revaUniversitySvg from "@/assets/logo/reva-university.svg";
 import revaRiftSvg from "@/assets/logo/reva-rift.svg";
@@ -137,35 +135,19 @@ const HeroSection = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.7 }}
           >
-            <ExpandableScreen layoutId="workshops-screen" triggerRadius="99px" contentRadius="0px" animationDuration={0.4}>
-              <ExpandableScreenTrigger className="w-full sm:w-auto">
-                <button
-                  className="btn-shine inline-flex items-center justify-center rounded-full font-semibold text-xs sm:text-sm w-48 sm:w-60 px-8 py-2 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative"
-                >
-                  Explore Workshops
-                </button>
-              </ExpandableScreenTrigger>
-              <ExpandableScreenContent className="bg-background !p-0">
-                 <div className="w-full min-h-screen bg-background text-foreground h-full overflow-y-auto">
-                   <Workshops embedded />
-                 </div>
-              </ExpandableScreenContent>
-            </ExpandableScreen>
+            <Link
+              to="/workshops"
+              className="btn-shine inline-flex items-center justify-center rounded-full font-semibold text-xs sm:text-sm w-48 sm:w-60 px-8 py-2 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative"
+            >
+              Explore Workshops
+            </Link>
 
-            <ExpandableScreen layoutId="events-screen" triggerRadius="99px" contentRadius="0px" animationDuration={0.4}>
-              <ExpandableScreenTrigger className="w-full sm:w-auto">
-                <button
-                  className="btn-shine inline-flex items-center justify-center rounded-full font-semibold text-xs sm:text-sm w-48 sm:w-60 px-8 py-2 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative"
-                >
-                  Explore Hackathons
-                </button>
-              </ExpandableScreenTrigger>
-              <ExpandableScreenContent className="bg-background !p-0">
-                <div className="w-full min-h-screen bg-background text-foreground h-full overflow-y-auto">
-                   <Events embedded />
-                </div>
-              </ExpandableScreenContent>
-            </ExpandableScreen>
+            <Link
+              to="/events"
+              className="btn-shine inline-flex items-center justify-center rounded-full font-semibold text-xs sm:text-sm w-48 sm:w-60 px-8 py-2 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative"
+            >
+              Explore Hackathons
+            </Link>
           </motion.div>
         </div>
 

@@ -1,6 +1,11 @@
 import { motion, useInView } from "framer-motion";
 import { useRef } from "react";
 import { Link } from "react-router-dom";
+import {
+  ExpandableScreen,
+  ExpandableScreenTrigger,
+  ExpandableScreenContent,
+} from "@/components/ui/expandable-screen";
 
 const CTASection = () => {
   const ref = useRef(null);
@@ -32,12 +37,27 @@ const CTASection = () => {
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, delay: 0.3 }}
         >
-          <Link
-            to="/signup"
-            className="btn-shine inline-flex items-center gap-2 bg-primary text-primary-foreground px-12 py-5 rounded-full font-bold text-lg hover:opacity-90 transition-opacity"
-          >
-            Register Now
-          </Link>
+          <ExpandableScreen variant="fullscreen" contentRadius="0px">
+            <ExpandableScreenTrigger>
+              <div
+                className="btn-shine inline-flex items-center gap-2 bg-primary text-primary-foreground px-12 py-5 rounded-full font-bold text-lg hover:opacity-90 transition-opacity cursor-pointer"
+              >
+                Register Now
+              </div>
+            </ExpandableScreenTrigger>
+            <ExpandableScreenContent>
+              <div className="w-full min-h-full bg-background flex flex-col items-center justify-center p-8">
+                <h1 className="text-4xl font-bold mb-4">Join RIFT 2026</h1>
+                <p className="text-xl text-muted-foreground mb-8 text-center max-w-xl">
+                  Register now to secure your spot at Bangalore's premier tech event.
+                </p>
+                {/* Embedded Signup Form would go here */}
+                <div className="w-full max-w-md p-8 rounded-2xl border border-border bg-card">
+                   <p className="text-center italic">Registration Form Integration...</p>
+                </div>
+              </div>
+            </ExpandableScreenContent>
+          </ExpandableScreen>
         </motion.div>
       </div>
     </section>
