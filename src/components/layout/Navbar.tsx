@@ -2,7 +2,6 @@ import { useState, useEffect, useRef } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 import logoLight from "@/assets/logo/2nd_main_3.png";
-import logoDark from "@/assets/logo/2nd_main_white.png";
 import StaggeredMenu, { StaggeredMenuItem } from "@/components/ui/StaggeredMenu";
 
 const navLinks = [
@@ -66,6 +65,9 @@ const Navbar = () => {
     link: (typeof navLinks)[0]
   ) => {
     event.preventDefault();
+    
+    // Close any expandable screens when navigating away via navbar
+    window.dispatchEvent(new CustomEvent('close-expandables'));
 
     if (link.type === "route") {
       navigate(link.href);
@@ -123,7 +125,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 will-change-transform ${navBg}`}
+      className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 will-change-transform ${navBg}`}
     >
       <div className="container flex items-center justify-between h-16 px-4 md:px-8">
         {/* Logo */}
@@ -131,26 +133,18 @@ const Navbar = () => {
           to="/"
           className="flex items-center gap-2 relative z-[1001]"
           onClick={(e) => {
+            window.dispatchEvent(new CustomEvent('close-expandables'));
             if (isHomePage) {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
             }
           }}
         >
-          <div className="relative h-11 md:h-14">
-            <img
-              src={logoLight}
-              alt="REVA RIFT"
-              className="h-full w-auto transition-opacity duration-500"
-              style={{ opacity: isInverted ? 0 : 1 }}
-            />
-            <img
-              src={logoDark}
-              alt="REVA RIFT"
-              className="absolute top-0 left-0 h-full w-auto transition-opacity duration-500"
-              style={{ opacity: isInverted ? 1 : 0 }}
-            />
-          </div>
+          <img
+            src={logoLight}
+            alt="REVA RIFT"
+            className="h-9 md:h-12 w-auto object-contain"
+          />
         </Link>
 
         {/* Navigation */}
@@ -183,10 +177,10 @@ const Navbar = () => {
 
           {/* Hamburger — always visible on mobile, appears on desktop when scrolled */}
           <div
-            className={`transition-all duration-300 ${
+            className={`transition-all duration-300 opacity-100 ${
               !scrolled
                 ? "md:opacity-0 md:w-0 md:overflow-hidden md:pointer-events-none"
-                : "opacity-100"
+                : "w-auto"
             }`}
           >
             <StaggeredMenu

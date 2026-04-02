@@ -77,7 +77,17 @@ export function ExpandableScreen({
         document.body.style.overflow = "unset"
       }
     }
-  }, [isExpanded, lockScroll])
+
+    const handler = () => {
+      setIsExpanded(false)
+      onExpandChange?.(false)
+    }
+    window.addEventListener('close-expandables', handler)
+    
+    return () => {
+      window.removeEventListener('close-expandables', handler)
+    }
+  }, [isExpanded, lockScroll, onExpandChange])
 
   return (
     <ExpandableScreenContext.Provider
@@ -170,7 +180,8 @@ export function ExpandableScreenContent({
             style={{ zIndex: 5 }}
           />
 
-          {/* Close button — outside transformed container so fixed works */}
+          {/* Close button — removed per user request to favor Navbar */}
+          {/*
           {showCloseButton && (
             <motion.button
               initial={{ opacity: 0, scale: 0.8 }}
@@ -187,6 +198,7 @@ export function ExpandableScreenContent({
               <X className="h-5 w-5" />
             </motion.button>
           )}
+          */}
 
           {/* Morphing background with shared layoutId */}
           <motion.div

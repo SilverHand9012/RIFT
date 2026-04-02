@@ -48,12 +48,18 @@ const HeroSection = () => {
         src={vectorTop} 
         alt="" 
         style={{ y: yTop }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
         className="hidden md:block absolute top-0 right-0 w-[35vw] max-w-[600px] object-contain pointer-events-none z-0" 
       />
       <motion.img 
         src={vectorBottom} 
         alt="" 
         style={{ y: yBottom }}
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
         className="hidden md:block absolute bottom-0 left-0 w-[35vw] max-w-[600px] object-contain pointer-events-none z-0" 
       />
 
@@ -63,7 +69,7 @@ const HeroSection = () => {
         <div className="absolute top-0 left-0 right-0 h-16 z-[60] pointer-events-none flex items-center">
           <div className="container max-w-7xl mx-auto flex items-center px-4">
             {/* Invisible spacer to match navbar's blue logo wordmark width */}
-            <img src={logoFull} alt="" className="h-11 md:h-14 opacity-0 invisible" />
+            <img src={logoFull} alt="" className="h-9 md:h-12 opacity-0 invisible object-contain" />
             {/* Adjusted gap on mobile, keeping 2px on desktop */}
             <div className="w-3 md:w-[2px]" />
             <img src={logo2ndMain} alt="" className="h-8 md:h-9" />
