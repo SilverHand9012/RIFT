@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
@@ -24,6 +24,18 @@ const queryClient = new QueryClient();
 
 const AnimatedRoutes = () => {
   const location = useLocation();
+
+  useEffect(() => {
+    const pageTitles: Record<string, string> = {
+      "/": "REVA RIFT",
+      "/faqs": "REVA RIFT | FAQs",
+      "/workshops": "REVA RIFT | Workshops",
+      "/divisions": "REVA RIFT | Divisions",
+      "/presummit": "REVA RIFT | Pre-Summit",
+      "/events": "REVA RIFT | Events",
+    };
+    document.title = pageTitles[location.pathname] || "REVA RIFT";
+  }, [location]);
   
   return (
     <AnimatePresence mode="wait">

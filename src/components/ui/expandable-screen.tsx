@@ -76,8 +76,10 @@ export function ExpandableScreen({
     if (lockScroll) {
       if (isExpanded) {
         document.body.style.overflow = "hidden"
+        window.dispatchEvent(new CustomEvent('expandable-state-change', { detail: { isExpanded: true } }))
       } else {
         document.body.style.overflow = "unset"
+        window.dispatchEvent(new CustomEvent('expandable-state-change', { detail: { isExpanded: false } }))
       }
     }
 
@@ -161,7 +163,7 @@ export function ExpandableScreenContent({
   return createPortal(
     <AnimatePresence>
       {isExpanded && (
-        <div className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden ${variant === "window" ? "p-0 md:p-6" : "p-0"}`}>
+        <div className={`fixed inset-0 z-[9999] flex items-center justify-center overflow-hidden p-4 md:p-6`}>
           {/* Backdrop overlay */}
           <motion.div
             initial={{ opacity: 0 }}
@@ -190,8 +192,8 @@ export function ExpandableScreenContent({
             className={`
               relative flex flex-col transform-gpu will-change-transform bg-background
               ${variant === "fullscreen" 
-                ? "h-full w-full" 
-                : "h-[90vh] md:h-[80vh] w-full max-w-3xl shadow-2xl overflow-hidden"
+                ? "h-full w-full md:rounded-none rounded-[32px]" 
+                : "h-full md:h-[80vh] w-full max-w-3xl shadow-2xl overflow-hidden md:rounded-3xl rounded-[32px]"
               }
               ${className}
             `}

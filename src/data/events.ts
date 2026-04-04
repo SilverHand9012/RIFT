@@ -1,6 +1,8 @@
 import hackathonA1 from "@/assets/images/event-cards/hackathonA1.webp";
 import hackathonB1 from "@/assets/images/event-cards/hackathonB1.webp";
 import hackathonC1 from "@/assets/images/event-cards/hackathonC1.webp";
+import ainex from "@/assets/images/event-cards/ainex.webp";
+import katha from "@/assets/images/event-cards/katha.webp";
 
 export const eventsData = [
   {
@@ -15,7 +17,7 @@ export const eventsData = [
     time: "Ongoing",
     venue: "TBA",
     registrationLink: "https://vision.hack2skill.com/event/ainex-hack",
-    image: hackathonA1,
+    image: ainex,
     timeline: [
       { title: "Registration", timeString: "21 Mar 26, 10:57 AM – 05 Apr 26, 10:57 AM IST", dateRange: "21 Mar – 05 Apr" },
       { title: "Project Submission", timeString: "23 Mar 26, 10:57 AM – 05 Apr 26, 10:57 AM IST", dateRange: "23 Mar – 05 Apr" },
@@ -34,7 +36,7 @@ export const eventsData = [
     time: "24 Hours",
     venue: "TBA",
     registrationLink: "https://vision.hack2skill.com/event/katha-hack",
-    image: hackathonB1,
+    image: katha,
     timeline: [
       { title: "Registration", timeString: "23 Mar 26, 10:57 AM – 06 Apr 26, 10:57 AM IST", dateRange: "23 Mar – 06 Apr" },
       { title: "Hack Day", timeString: "10 Apr 26, 09:00 AM – 11 Apr 26, 04:00 PM IST", dateRange: "10 Apr – 11 Apr" },

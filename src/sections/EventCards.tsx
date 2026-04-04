@@ -35,15 +35,15 @@ function EventCard({ card }: { card: (typeof eventsData)[number] }) {
     >
       <ExpandableScreenTrigger className="h-full w-full flex flex-col">
         <div
-          className="group w-full h-full flex flex-col rounded-xl overflow-hidden cursor-pointer border border-white/10 bg-[#060C1A] hover:border-white/20 transition-all duration-300"
+          className="group w-full h-full flex flex-col rounded-2xl overflow-hidden cursor-pointer border border-white/10 bg-[#060C1A] hover:border-white/20 transition-all duration-300"
         >
-          <div className="aspect-video overflow-hidden shrink-0">
+          <div className="aspect-video overflow-hidden relative shrink-0">
             <img
               src={card.image}
               alt={card.name}
-              className="w-full h-full object-cover group-hover:scale-105"
-              style={{ transition: "transform 0.7s cubic-bezier(0.23, 1, 0.32, 1)" }}
+              className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-700 ease-[cubic-bezier(0.23,1,0.32,1)]"
             />
+            <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221] via-transparent to-transparent pointer-events-none" />
           </div>
 
           <div className="px-6 py-6 md:px-8 md:py-8 flex flex-col grow space-y-5">
@@ -85,17 +85,17 @@ function ExpandedEventView({ card }: { card: (typeof eventsData)[number] }) {
   return (
     <div className="flex flex-col w-full min-h-full bg-[#0B1221] text-white">
       {/* Header Image with fade */}
-      <div className="w-full h-48 md:h-56 overflow-hidden relative flex-shrink-0 group">
+      <div className="w-full h-[260px] md:h-[380px] overflow-hidden relative flex-shrink-0 group">
         <img
           src={card.image}
           alt={card.name}
-          className="w-full h-full object-cover"
+          className="w-full h-full object-cover object-top"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221] via-transparent to-transparent opacity-80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221] via-transparent to-transparent opacity-70" />
       </div>
 
       {/* Main Content Area */}
-      <div className="px-6 md:px-8 pb-24 -mt-16 relative z-10 space-y-6">
+      <div className="px-6 md:px-12 pb-24 mt-4 relative z-10 space-y-6">
         {/* Badge Row */}
         <div className="flex items-center gap-3">
           <span className="px-4 py-1.5 rounded-full bg-[#0052FF] text-[11px] font-bold uppercase tracking-widest text-white">

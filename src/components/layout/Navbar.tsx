@@ -20,6 +20,19 @@ const Navbar = () => {
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
 
+  const [isHidden, setIsHidden] = useState(false);
+
+  // Listen for event card expansion state to hide the navbar
+  useEffect(() => {
+    const handleExpandableChange = (event: any) => {
+      setIsHidden(event.detail.isExpanded);
+    };
+    window.addEventListener('expandable-state-change', handleExpandableChange);
+    return () => {
+      window.removeEventListener('expandable-state-change', handleExpandableChange);
+    };
+  }, []);
+
   // Single RAF loop: poll window.scrollY (Lenis updates it) to detect
   // both "scrolled past 20px" and "navbar is over a dark section".
   useEffect(() => {
@@ -117,7 +130,7 @@ const Navbar = () => {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 will-change-transform ${navBg}`}
+      className={`fixed top-0 left-0 right-0 z-[10000] transition-all duration-500 will-change-transform ${isHidden ? "translate-y-[-100%] opacity-0 pointer-events-none" : "translate-y-0 opacity-1"} ${!scrolled ? "border-b md:border-b-0 border-black/10" : ""} ${navBg}`}
     >
       <div className="container flex items-center justify-between h-16 px-4 md:px-8">
         {/* Logo */}
