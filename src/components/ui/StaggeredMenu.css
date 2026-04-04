@@ -159,10 +159,11 @@
   gap: 1.5rem;
   list-style: none;
   padding: 0;
+  width: 100%;
 }
 
 .sm-socials-link {
-  color: rgba(0, 0, 0, 0.5);
+  color: var(--sm-accent);
   text-decoration: none;
   font-size: 1.1rem;
   transition: color 0.3s ease, transform 0.3s ease;
@@ -170,7 +171,7 @@
 }
 
 .sm-socials-link:hover {
-  color: rgba(0, 0, 0, 0.9);
+  filter: brightness(0.8);
   transform: translateY(-3px);
 }
 
@@ -246,9 +247,14 @@
     box-shadow: none;
   }
   .sm-panel-content {
-    padding: 6rem 1.75rem 3rem; /* Extra top padding to clear header */
-    justify-content: flex-start; /* Flow from top to bottom naturally */
-    gap: 3.5rem;
+    padding: 6rem 1.75rem 4rem; /* Adjusted padding to ensure space for icons */
+    justify-content: flex-start;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+  .sm-panel-nav {
+    flex: 1; /* Pushes the bottom block to the end */
   }
   .sm-panel-list {
     display: flex;
@@ -279,11 +285,10 @@
     opacity: 1;
   }
   .sm-panel-bottom {
-    align-items: flex-start;
+    align-items: stretch; /* Change from flex-start to stretch for full-width lines */
     width: 100%;
-    margin-top: 2rem;
-    border-top: 2px solid rgba(0, 0, 0, 0.08); /* Clearer division */
-    padding-top: 1.5rem;
+    margin-top: auto;
+    padding-top: 0;
   }
   .sm-secondary-links {
     border-top: none;
@@ -297,9 +302,17 @@
     width: 100%;
     padding-left: 0.25rem;
   }
+  .sm-panel-footer {
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    margin-left: -1.75rem;
+    margin-right: -1.75rem;
+    padding: 1.25rem 1.75rem;
+    width: auto;
+  }
   .sm-socials-list {
     justify-content: flex-start;
-    padding-left: 0.25rem;
-    margin-top: 1rem;
+    margin-top: 0;
+    width: 100%;
   }
 }

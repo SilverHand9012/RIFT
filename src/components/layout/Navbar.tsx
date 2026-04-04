@@ -166,11 +166,6 @@ const Navbar = () => {
             <StaggeredMenu
               items={staggeredMenuItems}
               inverted={isInverted}
-              secondaryLinks={[
-                { label: "FAQ", href: "/faqs" },
-                { label: "Sponsorship", href: "mailto:gdgoncampus@reva.edu.in", external: true },
-                { label: "GDG on Campus REVA University", href: "https://gdg.community.dev/gdg-on-campus-reva-university-bengaluru-india/", external: true },
-              ]}
               socials={[
                 { icon: <Linkedin size={18} />, href: "https://www.linkedin.com/company/gdg-reva", label: "LinkedIn" },
                 { icon: <Twitter size={18} />, href: "https://twitter.com/gdgoncampusreva", label: "X (Twitter)" },
