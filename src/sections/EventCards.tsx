@@ -1,5 +1,5 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useSearchParams } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Info } from "lucide-react";
 import {
@@ -186,6 +186,14 @@ interface EventCardsProps {
 
 const EventCards = ({ hideExploreButton = false }: EventCardsProps) => {
   const [activeFilter, setActiveFilter] = useState("All");
+  const [searchParams] = useSearchParams();
+
+  useEffect(() => {
+    const category = searchParams.get("category");
+    if (category && filters.includes(category)) {
+      setActiveFilter(category);
+    }
+  }, [searchParams]);
 
   const allEvents = hideExploreButton ? eventsData : eventsData.slice(0, 3);
 

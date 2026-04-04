@@ -1,10 +1,11 @@
 import { motion, useInView, useMotionValue, useTransform, animate } from "framer-motion";
 import { useRef, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 const stats = [
-  { number: "7", label: "Hackathons", description: "AI, IoT, and Web3 innovation" },
+  { number: "7", label: "Hackathons", description: "AI, IoT, and Web3 innovation", link: "/events?category=Hackathons" },
   { number: "20+", label: "Mentors", description: "Industry Experts & Mentors" },
-  { number: "6", label: "Workshops", description: "Curated Technical Workshops" },
+  { number: "6", label: "Workshops", description: "Curated Technical Workshops", link: "/events?category=Workshops" },
   { number: "3000+", label: "Participants", description: "Projected Participants" },
 ];
 
@@ -55,21 +56,32 @@ const ImpactSection = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-6xl mx-auto">
-          {stats.map((stat, i) => (
-            <motion.div
-              key={stat.label}
-              className="bg-background border-2 border-border hover:border-primary rounded-none p-8 text-left card-hover group transition-all"
-              initial={{ opacity: 0, y: 24 }}
-              animate={isInView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.45, delay: i * 0.08 }}
-            >
-              <div className="text-4xl md:text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300 origin-left">
-                <Counter value={stat.number} />
+          {stats.map((stat, i) => {
+            const CardContent = (
+              <motion.div
+                className={`bg-background border-2 border-border h-full ${stat.link ? "hover:border-primary cursor-pointer transition-all duration-300" : ""} rounded-none p-8 text-left group`}
+                initial={{ opacity: 0, y: 24 }}
+                animate={isInView ? { opacity: 1, y: 0 } : {}}
+                transition={{ duration: 0.45, delay: i * 0.08 }}
+              >
+                <div className="text-4xl md:text-5xl font-black text-primary mb-2 group-hover:scale-110 transition-transform duration-300 origin-left">
+                  <Counter value={stat.number} />
+                </div>
+                <div className="font-bold text-xl text-foreground mb-1">{stat.label}</div>
+                <div className="text-sm text-muted-foreground leading-relaxed">{stat.description}</div>
+              </motion.div>
+            );
+
+            return stat.link ? (
+              <Link key={stat.label} to={stat.link}>
+                {CardContent}
+              </Link>
+            ) : (
+              <div key={stat.label}>
+                {CardContent}
               </div>
-              <div className="font-bold text-xl text-foreground mb-1">{stat.label}</div>
-              <div className="text-sm text-muted-foreground leading-relaxed">{stat.description}</div>
-            </motion.div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>

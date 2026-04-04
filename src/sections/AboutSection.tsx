@@ -16,9 +16,9 @@ const AboutSection = () => {
           transition={{ duration: 0.6 }}
         >
           <h2 className="section-title mb-5">About</h2>
-          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto">
-            Meet in Bangalore to build bold prototypes, learn fast, and ship ideas that
-            strengthen India's digital future.
+          <p className="text-base md:text-lg text-muted-foreground leading-relaxed max-w-2xl mx-auto font-medium">
+            REVA RIFT 2026 is a global, multi-domain tech fest built to unite students, ideas, and
+            disciplines into one powerful innovation journey.
           </p>
         </motion.div>
 
@@ -48,14 +48,15 @@ const AboutSection = () => {
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.55, delay: 0.2 }}
           >
-            <div>
-              <h4 className="text-lg md:text-xl font-bold mb-4 relative -top-2 md:-top-4">What You Will Experience</h4>
-              <ul className="space-y-3 text-sm md:text-base text-muted-foreground">
-                <li>Industry-aligned real-world problem statements</li>
-                <li>Hands-on workshops on emerging technologies</li>
-                <li>24-hour domain-focused hackathons</li>
-                <li>Mentorship from industry experts</li>
-              </ul>
+            <div className="space-y-6">
+              <p className="text-base md:text-lg text-muted-foreground leading-relaxed">
+                It goes beyond the traditional “weekend hackathon” model. Instead of isolated events,
+                REVA RIFT creates a connected ecosystem where learning, collaboration, and
+                competition evolve together building stronger, future-ready technology communities.
+              </p>
+              <h4 className="text-lg md:text-xl font-bold text-primary">
+                Structured as a dynamic five-week experience
+              </h4>
             </div>
             <div className="mt-10 md:mt-14 flex justify-center lg:justify-start">
               <motion.a
