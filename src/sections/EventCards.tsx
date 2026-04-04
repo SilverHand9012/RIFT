@@ -46,10 +46,10 @@ function EventCard({ card }: { card: (typeof eventsData)[number] }) {
             />
           </div>
 
-          <div className="px-5 py-5 flex flex-col grow space-y-4">
+          <div className="px-6 py-6 md:px-8 md:py-8 flex flex-col grow space-y-5">
             <div className="flex items-start justify-between gap-3">
               <h3
-                className="text-lg font-bold text-white leading-tight"
+                className="text-xl md:text-2xl font-bold text-white leading-tight"
                 style={{ fontFamily: "'BL Melody', sans-serif" }}
               >
                 {card.name}
@@ -61,8 +61,8 @@ function EventCard({ card }: { card: (typeof eventsData)[number] }) {
               </span>
             </div>
             
-            <div className="space-y-3 flex-1 flex flex-col justify-end">
-              <p className="text-xs text-gray-400 font-medium">{card.description}</p>
+            <div className="space-y-4 flex-1 flex flex-col justify-end">
+              <p className="text-sm text-gray-400 font-medium">{card.description}</p>
               <div className="flex items-center gap-1.5 text-[#3077FF] text-[11px] font-semibold group-hover:text-white transition-colors">
                 View Details
                 <Info className="h-3 w-3" />
@@ -197,8 +197,8 @@ const EventCards = ({ hideExploreButton = false }: EventCardsProps) => {
   });
 
   return (
-    <section className="py-20 md:py-28 bg-black relative text-white">
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section className="py-20 md:py-32 bg-black relative text-white">
+      <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
         <div className="text-center mb-10 flex flex-col items-center">
           <motion.h2
@@ -249,7 +249,7 @@ const EventCards = ({ hideExploreButton = false }: EventCardsProps) => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}
