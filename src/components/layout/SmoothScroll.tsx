@@ -36,7 +36,22 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
     gsap.ticker.lagSmoothing(0);
 
-    // Stop Lenis when body scroll is locked
+    // Watch for expandable state changes to stop/start Lenis
+    const handleExpandableChange = (e: any) => {
+      const { isExpanded } = e.detail;
+      if (isExpanded) {
+        lenis.stop();
+      } else {
+        // Only restart if the body is not also hidden by some other means
+        if (document.body.style.overflow !== "hidden") {
+          lenis.start();
+        }
+      }
+    };
+
+    window.addEventListener('expandable-state-change', handleExpandableChange);
+
+    // Stop Lenis when body scroll is locked (as a fallback)
     const observer = new MutationObserver(() => {
       if (document.body.style.overflow === "hidden") {
         lenis.stop();
@@ -52,6 +67,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
 
     // Cleanup
     return () => {
+      window.removeEventListener('expandable-state-change', handleExpandableChange);
       observer.disconnect();
       lenis.destroy();
       gsap.ticker.remove((time) => {

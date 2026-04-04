@@ -209,7 +209,7 @@ export function ExpandableScreenContent({
               </button>
             )}
 
-            <div className="flex-1 overflow-y-auto w-full">
+            <div className="flex-1 overflow-y-auto overscroll-contain w-full">
               {children}
             </div>
           </motion.div>
