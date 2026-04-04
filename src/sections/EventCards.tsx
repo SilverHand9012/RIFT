@@ -55,7 +55,7 @@ function EventCard({ card }: { card: (typeof eventsData)[number] }) {
                 {card.name}
               </h3>
               <span
-                className={`flex-shrink-0 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${getPhaseBadgeStyle(card.phase)}`}
+                className={`inline-flex items-center justify-center text-center flex-shrink-0 px-2 py-0.5 rounded-full text-[9px] font-bold uppercase tracking-wider ${getPhaseBadgeStyle(card.phase)}`}
               >
                 {card.phase}
               </span>
@@ -98,10 +98,10 @@ function ExpandedEventView({ card }: { card: (typeof eventsData)[number] }) {
       <div className="px-6 md:px-12 pb-24 mt-4 relative z-10 space-y-6">
         {/* Badge Row */}
         <div className="flex items-center gap-3">
-          <span className="px-4 py-1.5 rounded-full bg-[#0052FF] text-[11px] font-bold uppercase tracking-widest text-white">
+          <span className="inline-flex items-center justify-center text-center px-4 py-1.5 rounded-full bg-[#0052FF] text-[11px] font-bold uppercase tracking-widest text-white">
             {card.phase}
           </span>
-          <span className="px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/70">
+          <span className="inline-flex items-center justify-center text-center px-4 py-1.5 rounded-full bg-white/5 border border-white/10 text-[11px] font-bold uppercase tracking-widest text-white/70">
             {card.type}
           </span>
         </div>

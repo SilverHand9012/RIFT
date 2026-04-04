@@ -66,9 +66,9 @@ export const eventsData = [
   {
     id: 7,
     name: "Google Stitch Workshop",
-    description: "Cloud Integration Masterclass",
+    description: "Google Ecosystem Integration",
     fullDescription:
-      "Explore the power of Google Stitch in this hands-on workshop designed to teach you how to weave together various Google Cloud services into a seamless, automated workflow. Learn about service account management, cross-platform integration, and secure data stitching techniques for modern enterprise applications.",
+      "Got a million-dollar idea but not sure how to turn it into a real product?\n\nThis workshop explores how modern applications are built by seamlessly connecting powerful tools within the Google ecosystem. Participants will learn how services such as Google Cloud, Firebase, and various APIs can be “stitched” together to transform a raw idea or simple prototype into a fully functional application.\n\nThrough practical insights and guided demonstrations, the session will walk participants through the process of structuring an app, integrating essential services, and building scalable solutions using Google technologies.",
     phase: "Phase II",
     type: "Workshops",
     date: "April 09, 2026",
@@ -84,10 +84,10 @@ export const eventsData = [
   },
   {
     id: 8,
-    name: "Generative AI (GenAI)",
-    description: "Building with LLMs",
+    name: "Google’s GenAI",
+    description: "Meet your digital superbrain.",
     fullDescription:
-      "Dive into the world of Generative AI. This workshop covers the fundamentals of Large Language Models (LLMs), prompt engineering, and building practical AI agents using state-of-the-art frameworks. Get hands-on experience deploying your first RAG-based application and understand the future of agentic workflows.",
+      "Meet your digital superbrain.\n\nThis workshop introduces participants to the world of Generative AI and how it is reshaping the way we build, create, and interact with technology. It provides an accessible, entry-level exploration of how advanced AI models—such as Gemini—process information, generate content, and assist in complex tasks.\n\nParticipants will discover how Generative AI can write code, generate creative content, assist in problem-solving, and enhance productivity across industries. The session will also highlight how developers and innovators can integrate GenAI capabilities into real-world applications.",
     phase: "Phase II",
     type: "Workshops",
     date: "April 09, 2026",
@@ -103,10 +103,10 @@ export const eventsData = [
   },
   {
     id: 9,
-    name: "Drone Technology",
-    description: "Hardware & Flight Control",
+    name: "Google Wing: The Future of Drone Delivery",
+    description: "Look up the future of delivery is airborne.",
     fullDescription:
-      "A comprehensive introduction to drone hardware, flight controllers, and autonomous navigation. In this session, you will learn about the mechanics of quadcopters, PID tuning for stable flight, and how to program simple flight paths using open-source drone firmware. Perfect for hardware enthusiasts and future roboticists.",
+      "Look up the future of delivery is airborne.\n\nThis session explores Wing, Google’s autonomous drone delivery system that is redefining how goods move through cities. Designed to deliver small packages within minutes, Wing uses advanced navigation systems, real-time data, and autonomous flight technology to create a fast, efficient, and contactless delivery network.\n\nParticipants will discover how these intelligent drones plan flight paths, avoid obstacles, communicate with ground systems, and safely deliver packages to customers. The workshop will also highlight the technology stack behind drone logistics, including AI-based navigation, cloud infrastructure, and real-time monitoring systems.",
     phase: "Phase II",
     type: "Workshops",
     date: "April 09, 2026",
