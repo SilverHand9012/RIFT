@@ -77,27 +77,29 @@ const Navbar = () => {
     event: React.MouseEvent<HTMLElement>,
     link: (typeof navLinks)[0]
   ) => {
-    event.preventDefault();
-    
-    // Close any expandable screens when navigating away via navbar
+    // Close any expanded cards first
     window.dispatchEvent(new CustomEvent('close-expandables'));
 
     if (link.type === "route") {
+      // For standard routes, prevent default and use navigate
+      event.preventDefault();
       navigate(link.href);
       return;
     }
 
-    if (!isHomePage) {
-      // Just navigate to the hash route immediately.
-      // ScrollToTop and SmoothScroll will pick up the hash and animate
-      // after the page transition finishes.
-      navigate(`/${link.href}`);
-      return;
+    if (link.type === "hash") {
+      event.preventDefault();
+      
+      const targetHash = link.href; // e.g. "#about"
+      
+      if (!isHomePage) {
+        // If on another page, navigate to home + hash
+        navigate(`/${targetHash}`);
+      } else {
+        // If already on home page, update hash (SmoothScroll will handle the anchor)
+        navigate(targetHash);
+      }
     }
-
-    // When on the home page, just use standard navigate to update the hash.
-    // SmoothScroll.tsx and ScrollToTop.tsx will handle the rest.
-    navigate(link.href);
   };
 
   const staggeredMenuItems: StaggeredMenuItem[] = navLinks.map((link) => ({
@@ -109,8 +111,10 @@ const Navbar = () => {
         ? `/${link.href}`
         : link.href,
     type: link.type,
-    onClick: (e: React.MouseEvent<HTMLAnchorElement>) =>
-      handleNavClick(e as any, link),
+    onClick: () => {
+      // Just ensure expandables close when an item is selected
+      window.dispatchEvent(new CustomEvent('close-expandables'));
+    },
   }));
 
   // Navbar is always transparent — colors invert when over a dark section

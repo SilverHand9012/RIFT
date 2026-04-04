@@ -1,4 +1,5 @@
 import React, { useRef, useState, useEffect } from 'react';
+import { Link, useLocation } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { ArrowUpRight } from 'lucide-react';
 import gridMenuIcon from '@/assets/elements/grid-menu-icon.png';
@@ -37,10 +38,18 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   className = "",
   inverted = false,
 }) => {
+  const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const panelRef = useRef<HTMLDivElement>(null);
   const backdropRef = useRef<HTMLDivElement>(null);
   const busyRef = useRef(false);
+
+  // Automatically close the menu when the location/path/hash changes
+  useEffect(() => {
+    if (isOpen) {
+      closeMenu();
+    }
+  }, [location.pathname, location.hash]);
 
   // Lock body scroll when menu is open
   useEffect(() => {
@@ -145,11 +154,14 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   };
 
   const handleItemClick = (e: React.MouseEvent<HTMLAnchorElement>, item: StaggeredMenuItem) => {
+    // Dispatch the click event (e.g. to close expandables)
     if (item.onClick) {
       item.onClick(e);
     }
-    // Always close the menu after clicking an item
-    closeMenu();
+    
+    // We DON'T call closeMenu() here manually anymore.
+    // The useEffect above will catch the location/hash change 
+    // triggered by the <Link> component and close the menu gracefully.
   };
 
   return (
@@ -174,13 +186,13 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
             <ul className="sm-panel-list" data-numbering>
               {items.map((item, index) => (
                 <li key={index} className="sm-panel-item">
-                  <a 
-                    href={item.href} 
+                  <Link 
+                    to={item.href} 
                     className="sm-panel-link" 
                     onClick={(e) => handleItemClick(e, item)}
                   >
                     <span className="sm-panel-itemLabel">{item.label}</span>
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
