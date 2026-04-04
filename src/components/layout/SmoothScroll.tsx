@@ -13,19 +13,23 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
-    // Initialize Lenis
+    // Detect touch device for lighter scrolling
+    const isTouch = window.matchMedia("(pointer: coarse)").matches;
+
+    // Initialize Lenis with optimized settings for mobile/desktop
     const lenis = new Lenis({
-      duration: 1.2,
+      duration: isTouch ? 0.8 : 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       orientation: "vertical",
       gestureOrientation: "vertical",
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 2,
+      wheelMultiplier: 1.1,
+      touchMultiplier: isTouch ? 1.5 : 2,
       infinite: false,
     });
 
     lenisRef.current = lenis;
+    (window as any).lenis = lenis;
 
     // Synchronize Lenis with GSAP ScrollTrigger
     lenis.on("scroll", ScrollTrigger.update);
@@ -70,6 +74,7 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
       window.removeEventListener('expandable-state-change', handleExpandableChange);
       observer.disconnect();
       lenis.destroy();
+      (window as any).lenis = null;
       gsap.ticker.remove((time) => {
         lenis.raf(time * 1000);
       });
@@ -95,8 +100,11 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
           });
         }, 800); // 800ms delay allows PageTransition and mounting to finish
       } else {
-        // Same-page hash click — scroll immediately
-        lenisRef.current.scrollTo(hash);
+        // Same-page hash click — scroll immediately after the current frame
+        // to ensure any scroll-lock releases from the caller are processed.
+        requestAnimationFrame(() => {
+          lenisRef.current?.scrollTo(hash);
+        });
       }
     } else {
       // If no hash, scroll to top.

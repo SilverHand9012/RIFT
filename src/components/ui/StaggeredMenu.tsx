@@ -148,6 +148,8 @@ const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
     if (item.onClick) {
       item.onClick(e);
     }
+    // Unlock scroll immediately so Lenis can scroll to the hash if navigation occurred
+    document.body.style.overflow = "unset";
     // Always close the menu after clicking an item
     closeMenu();
   };

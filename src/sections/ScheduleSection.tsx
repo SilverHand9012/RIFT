@@ -60,6 +60,7 @@ const ScheduleSection = () => {
       }
 
       if (fillLineRef.current) {
+        const isTouch = window.matchMedia("(pointer: coarse)").matches;
         gsap.fromTo(
           fillLineRef.current,
           { height: "0%" },
@@ -70,7 +71,8 @@ const ScheduleSection = () => {
               trigger: sectionRef.current,
               start: "top center",
               end: "bottom center",
-              scrub: true,
+              scrub: isTouch ? false : true, // Disable scrub on mobile for performance
+              toggleActions: isTouch ? "play none none none" : undefined,
             },
           },
         );

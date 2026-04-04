@@ -95,9 +95,12 @@ const Navbar = () => {
       return;
     }
 
-    // When on the home page, just use standard navigate to update the hash.
-    // SmoothScroll.tsx and ScrollToTop.tsx will handle the rest.
-    navigate(link.href);
+    // When on the home page, use lenis directly for immediate same-page scrolling
+    // and then update the URL hash for consistency.
+    if ((window as any).lenis) {
+      (window as any).lenis.scrollTo(link.href);
+    }
+    navigate(link.href, { replace: true });
   };
 
   const staggeredMenuItems: StaggeredMenuItem[] = navLinks.map((link) => ({
