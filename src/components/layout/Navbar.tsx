@@ -77,29 +77,27 @@ const Navbar = () => {
     event: React.MouseEvent<HTMLElement>,
     link: (typeof navLinks)[0]
   ) => {
-    // Close any expanded cards first
+    event.preventDefault();
+    
+    // Close any expandable screens when navigating away via navbar
     window.dispatchEvent(new CustomEvent('close-expandables'));
 
     if (link.type === "route") {
-      // For standard routes, prevent default and use navigate
-      event.preventDefault();
       navigate(link.href);
       return;
     }
 
-    if (link.type === "hash") {
-      event.preventDefault();
-      
-      const targetHash = link.href; // e.g. "#about"
-      
-      if (!isHomePage) {
-        // If on another page, navigate to home + hash
-        navigate(`/${targetHash}`);
-      } else {
-        // If already on home page, update hash (SmoothScroll will handle the anchor)
-        navigate(targetHash);
-      }
+    if (!isHomePage) {
+      // Just navigate to the hash route immediately.
+      // ScrollToTop and SmoothScroll will pick up the hash and animate
+      // after the page transition finishes.
+      navigate(`/${link.href}`);
+      return;
     }
+
+    // When on the home page, just use standard navigate to update the hash.
+    // SmoothScroll.tsx and ScrollToTop.tsx will handle the rest.
+    navigate(link.href);
   };
 
   const staggeredMenuItems: StaggeredMenuItem[] = navLinks.map((link) => ({
@@ -111,10 +109,8 @@ const Navbar = () => {
         ? `/${link.href}`
         : link.href,
     type: link.type,
-    onClick: () => {
-      // Just ensure expandables close when an item is selected
-      window.dispatchEvent(new CustomEvent('close-expandables'));
-    },
+    onClick: (e: React.MouseEvent<HTMLAnchorElement>) =>
+      handleNavClick(e as any, link),
   }));
 
   // Navbar is always transparent — colors invert when over a dark section
@@ -146,6 +142,8 @@ const Navbar = () => {
             if (isHomePage) {
               e.preventDefault();
               window.scrollTo({ top: 0, behavior: "smooth" });
+              // Clear the hash in the URL so that subsequent clicks on hash links work
+              navigate("/", { replace: true });
             }
           }}
         >

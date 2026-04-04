@@ -99,8 +99,18 @@ const SmoothScroll = ({ children }: SmoothScrollProps) => {
         lenisRef.current.scrollTo(hash);
       }
     } else {
-      // If no hash, just jump to top (controlled)
-      lenisRef.current.scrollTo(0, { immediate: true });
+      // If no hash, scroll to top.
+      const isSamePage = lastPathname.current === pathname;
+      if (isSamePage) {
+        // Smoothly scroll back if we are on the same page (e.g. clearing hash via logo)
+        lenisRef.current.scrollTo(0, {
+          duration: 1.5,
+          easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+        });
+      } else {
+        // Jump to top immediately if it's a new page
+        lenisRef.current.scrollTo(0, { immediate: true });
+      }
     }
     
     lastPathname.current = pathname;
