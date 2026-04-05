@@ -34,25 +34,6 @@ const HeroSection = () => {
   const yTop = useTransform(scrollYProgress, [0, 1], [0, 150]);
   const yBottom = useTransform(scrollYProgress, [0, 1], [0, -150]);
 
-  // Hero content: scroll-driven fade-out + scale-down ("pulling away" effect)
-  // Starts fading at 10% scroll, fully gone by 70%
-  const contentOpacity = useTransform(scrollYProgress, [0, 0.15, 0.65], [1, 1, 0]);
-  const contentScale = useTransform(scrollYProgress, [0, 0.65], [1, 0.92]);
-  const contentY = useTransform(scrollYProgress, [0, 0.65], [0, -40]);
-
-  const titleContainerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: { staggerChildren: 0.15, delayChildren: 0.3 }
-    }
-  };
-
-  const titleWordVariants = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] as [number, number, number, number] } }
-  };
-
   return (
     <section
       ref={sectionRef}
@@ -78,87 +59,87 @@ const HeroSection = () => {
         className="hidden md:block absolute bottom-0 left-0 w-[35vw] max-w-[600px] object-contain pointer-events-none z-0" 
       />
 
-      {/* Main hero content — scroll-driven fade-out + scale-down */}
-      <motion.div
-        style={{
-          opacity: contentOpacity,
-          scale: contentScale,
-          y: contentY,
-        }}
-        className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center will-change-transform"
+      {/* Main hero content — No longer scroll-driven, static positioning */}
+      <div
+        className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center"
       >
         
-        {/* Navbar-aligned logo (knot logo) - Purely visual, technically in Hero */}
+        {/* Navbar-aligned logos (knot logo on left, GDG on right) — Purely visual, technically in Hero */}
         <div className="absolute top-0 left-0 right-0 h-16 z-[60] pointer-events-none flex items-center">
-          <div className="container max-w-7xl mx-auto flex items-center px-4">
-            {/* Invisible spacer to match navbar's blue logo wordmark width */}
-            <img src={logoFull} alt="" className="h-9 md:h-12 opacity-0 invisible object-contain" />
-            {/* Adjusted gap on mobile, keeping 2px on desktop */}
-            <div className="w-3 md:w-[2px]" />
-            <img src={logo2ndMain} alt="" className="h-8 md:h-9 hidden md:block" />
+          <div className="container flex items-center justify-between mx-auto px-4 md:px-8">
+            {/* Left Side: Wordmark spacer + Knot Logo */}
+            <div className="flex items-center">
+              <img src={logoFull} alt="" className="h-9 md:h-12 opacity-0 invisible object-contain" />
+              <div className="w-3 md:w-[2px]" />
+              <img src={logo2ndMain} alt="" className="h-8 md:h-9 hidden md:block" />
+            </div>
+
+            {/* Right Side: GDG Logo aligned to navbar links position */}
+            <div className="hidden md:flex items-center">
+              <div className="flex items-center justify-end mr-4">
+                {/* Logo and first link spacer grouped for zero gap */}
+                <div className="flex items-center">
+                  <img 
+                    src={gdgRevaLogo} 
+                    alt="GDG REVA" 
+                    className="h-7 w-auto object-contain -mr-20" 
+                  />
+                  <div className="flex items-center gap-10 opacity-0 invisible pointer-events-none">
+                    <span className="text-sm font-semibold py-1">About</span>
+                    <span className="text-sm font-semibold py-1">Events</span>
+                    <span className="text-sm font-semibold py-1">Schedule</span>
+                    <span className="text-sm font-semibold py-1">Contact</span>
+                  </div>
+                </div>
+              </div>
+              {/* Spacer matching the width of the staggered menu toggle */}
+              <div className="w-12 h-10" />
+            </div>
           </div>
         </div>
 
         {/* BLOCK 1: University & RIFT Logos */}
         <div className="flex-1 w-full flex flex-col items-center justify-center gap-4 pt-12">
-          <motion.div
-             className="flex items-center justify-center gap-6 md:gap-10"
-             initial={{ opacity: 0, y: 20 }}
-             animate={{ opacity: 1, y: 0 }}
-             transition={{ duration: 0.6, delay: 0.1 }}
-          >
+          <div className="flex items-center justify-center gap-6 md:gap-10">
             <img src={naacLogo} alt="NAAC A+" className="h-8 md:h-12 w-auto object-contain" />
             <div className="h-8 md:h-10 w-[1.5px] invisible" />
             <img src={revaUniversitySvg} alt="REVA University" className="h-8 md:h-12 w-auto object-contain" />
-          </motion.div>
+          </div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="flex items-center justify-center"
-          >
+          <div className="flex items-center justify-center">
             <img 
               src={revaRiftSvg} 
               alt="REVA RIFT" 
               className="w-[234px] h-[25px] sm:w-[341px] sm:h-[36px] object-contain" 
             />
-          </motion.div>
+          </div>
         </div>
 
         {/* BLOCK 2: Heading & Subtitle */}
         <div className="flex-1 w-full flex flex-col items-center justify-center gap-8 px-4 z-20">
-          <motion.h1
+          <h1
             className="hero-title text-center text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-7xl max-w-5xl mx-auto"
-            variants={titleContainerVariants}
-            initial="hidden"
-            animate="visible"
           >
-            <motion.span variants={titleWordVariants} className="inline-block mr-3">Build</motion.span>
-            <motion.span variants={titleWordVariants} className="inline-block text-primary italic mr-3">India's</motion.span>
+            <span className="inline-block mr-3">Build</span>
+            <span className="inline-block text-primary italic mr-3">India's</span>
             <br />
-            <motion.span variants={titleWordVariants} className="inline-block mr-3">Tech</motion.span>
-            <motion.span variants={titleWordVariants} className="inline-block">Sovereignty</motion.span>
-          </motion.h1>
+            <span className="inline-block mr-3">Tech</span>
+            <span className="inline-block">Sovereignty</span>
+          </h1>
 
-          <motion.p
-            className="text-base md:text-lg lg:text-xl text-muted-foreground font-medium max-w-3xl leading-relaxed text-center"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
-          >
+          <p className="text-base md:text-lg lg:text-xl text-muted-foreground font-medium max-w-3xl leading-relaxed text-center">
             Meet in Bangalore to build bold prototypes, learn fast, and ship ideas that strengthen
             India's digital future.
-          </motion.p>
+          </p>
         </div>
 
-        {/* BLOCK 3: CTA Buttons */}
+        {/* BLOCK 3: CTA Buttons - ANIMATION KEPT AS REQUESTED */}
         <div className="flex-1 w-full flex flex-col items-center justify-start pt-4 z-20">
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.7 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Link
               to="/workshops"
@@ -178,26 +159,19 @@ const HeroSection = () => {
 
         {/* BLOCK 4: Organisers & Partners */}
         <div className="flex-1 w-full flex flex-col items-center justify-start gap-8 sm:gap-12 pt-0 pb-16">
-          <motion.div
-            className="flex flex-col items-center gap-2 -mt-16 sm:-mt-32"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
-          >
+          <div className="flex flex-col items-center gap-2 -mt-16 sm:-mt-32">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">Organised by:</p>
             <img 
               src={gdgRevaLogo} 
               alt="GDG REVA" 
               className="w-[200px] h-[25px] sm:w-[325px] sm:h-[40px] object-contain" 
             />
-          </motion.div>
+            <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground/80 mt-1">
+              in association with School of CSE
+            </p>
+          </div>
 
-          <motion.div
-            className="w-full max-w-4xl"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.1 }}
-          >
+          <div className="w-full max-w-4xl">
             <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground text-center mb-6">Community Partners:</p>
             <div className="flex flex-nowrap items-center justify-center gap-6 sm:gap-10 w-full px-2">
               {partners.map((partner, index) => (
@@ -211,9 +185,9 @@ const HeroSection = () => {
                 />
               ))}
             </div>
-          </motion.div>
+          </div>
         </div>
-      </motion.div>
+      </div>
 
       {/* Marquee pinned to the absolute bottom of the Hero page */}
       <div className="absolute bottom-0 left-0 right-0 z-20">

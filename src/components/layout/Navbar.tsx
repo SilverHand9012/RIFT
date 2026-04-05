@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Linkedin, Twitter, Instagram } from "lucide-react";
 import logoLight from "@/assets/logo/2nd_main_3.png";
@@ -179,7 +179,7 @@ const Navbar = () => {
             )}
           </div>
 
-          {/* Hamburger — only visible on mobile (below md) */}
+          {/* Staggered Menu — Mobile Only */}
           <div className="block md:hidden">
             <StaggeredMenu
               items={staggeredMenuItems}
