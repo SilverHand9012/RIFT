@@ -12,6 +12,7 @@ export interface StaggeredMenuItem {
 export interface StaggeredMenuSocialItem {
   label: string;
   link: string;
+  icon?: React.ReactNode;
 }
 
 export interface StaggeredMenuProps {
@@ -347,8 +348,8 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
               <ul className="sm-socials-list" role="list">
                 {socialItems.map((s, i) => (
                   <li key={s.label + i} className="sm-socials-item">
-                    <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link">
-                      {s.label}
+                    <a href={s.link} target="_blank" rel="noopener noreferrer" className="sm-socials-link" aria-label={s.label}>
+                      {s.icon ? s.icon : s.label}
                     </a>
                   </li>
                 ))}

@@ -64,40 +64,6 @@ const HeroSection = () => {
         className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center"
       >
         
-        {/* Navbar-aligned logos (knot logo on left, GDG on right) — Purely visual, technically in Hero */}
-        <div className="absolute top-0 left-0 right-0 h-16 z-[60] pointer-events-none flex items-center">
-          <div className="container flex items-center justify-between mx-auto px-4 md:px-8">
-            {/* Left Side: Wordmark spacer + Knot Logo */}
-            <div className="flex items-center">
-              <img src={logoFull} alt="" className="h-9 md:h-12 opacity-0 invisible object-contain" />
-              <div className="w-3 md:w-[2px]" />
-              <img src={logo2ndMain} alt="" className="h-8 md:h-9 hidden md:block" />
-            </div>
-
-            {/* Right Side: GDG Logo aligned to navbar links position */}
-            <div className="hidden md:flex items-center">
-              <div className="flex items-center justify-end mr-4">
-                {/* Logo and first link spacer grouped for zero gap */}
-                <div className="flex items-center">
-                  <img 
-                    src={gdgRevaLogo} 
-                    alt="GDG REVA" 
-                    className="h-7 w-auto object-contain -mr-20" 
-                  />
-                  <div className="flex items-center gap-10 opacity-0 invisible pointer-events-none">
-                    <span className="text-sm font-semibold py-1">About</span>
-                    <span className="text-sm font-semibold py-1">Events</span>
-                    <span className="text-sm font-semibold py-1">Schedule</span>
-                    <span className="text-sm font-semibold py-1">Contact</span>
-                  </div>
-                </div>
-              </div>
-              {/* Spacer matching the width of the staggered menu toggle */}
-              <div className="w-12 h-10" />
-            </div>
-          </div>
-        </div>
-
         {/* BLOCK 1: University & RIFT Logos */}
         <div className="flex-1 w-full flex flex-col items-center justify-center gap-4 pt-12">
           <div className="flex items-center justify-center gap-6 md:gap-10">

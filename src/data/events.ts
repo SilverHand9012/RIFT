@@ -3,6 +3,7 @@ import hackathonB1 from "@/assets/images/event-cards/hackathonB1.webp";
 import hackathonC1 from "@/assets/images/event-cards/hackathonC1.webp";
 import ainex from "@/assets/images/event-cards/ainex.webp";
 import katha from "@/assets/images/event-cards/katha.webp";
+import hackAlgo from "@/assets/images/event-cards/hack.algo.webp";
 
 export const eventsData = [
   {
@@ -54,7 +55,7 @@ export const eventsData = [
     time: "24 Hours",
     venue: "Hybrid",
     registrationLink: "https://vision.hack2skill.com/event/hack-algo",
-    image: hackathonC1,
+    image: hackAlgo,
     timeline: [
       { title: "Registration", timeString: "21 Mar 26, 10:57 AM – 05 Apr 26, 10:57 AM IST", dateRange: "21 Mar – 05 Apr" },
       { title: "Team Formation", timeString: "21 Mar 26, 10:57 AM – 05 Apr 26, 10:57 AM IST", dateRange: "21 Mar – 05 Apr" },

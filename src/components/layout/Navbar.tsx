@@ -1,7 +1,16 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logoLight from "@/assets/logo/2nd_main_3.png";
+import logo2ndMain from "@/assets/logo/reva-logo-black.svg";
+import gdgRevaLogo from "@/assets/logo/gdg-reva.svg";
 import StaggeredMenu, { StaggeredMenuItem } from "@/components/ui/StaggeredMenu";
+import { Linkedin, Instagram } from "lucide-react";
+
+const XLogo = ({ className }: { className?: string }) => (
+  <svg viewBox="0 0 24 24" aria-hidden="true" className={className} fill="currentColor">
+    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+  </svg>
+);
 
 const navLinks = [
   { label: "About", href: "#about", type: "hash" },
@@ -15,6 +24,7 @@ const NAV_HEIGHT = 64; // px — matches h-16
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
   const [isDark, setIsDark] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
   const location = useLocation();
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
@@ -117,9 +127,9 @@ const Navbar = () => {
   }));
 
   const socialMenuItems = [
-    { label: "LinkedIn", link: "https://www.linkedin.com/company/gdg-reva" },
-    { label: "X (Twitter)", link: "https://twitter.com/gdgoncampusreva" },
-    { label: "Instagram", link: "https://www.instagram.com/gdgoncampusreva/" },
+    { label: "LinkedIn", link: "https://www.linkedin.com/company/gdg-reva", icon: <Linkedin className="w-5 h-5" /> },
+    { label: "X (Twitter)", link: "https://twitter.com/gdgoncampusreva", icon: <XLogo className="w-5 h-5" /> },
+    { label: "Instagram", link: "https://www.instagram.com/gdgoncampusreva/", icon: <Instagram className="w-5 h-5" /> },
   ];
 
   // Handle menu item clicks — find the original navLink and delegate to handleNavClick
@@ -133,27 +143,47 @@ const Navbar = () => {
   const isInverted = isDark;
 
   const navBg = !scrolled
-    ? "bg-transparent"
+    ? isHomePage ? "bg-white border-b border-black" : "bg-transparent"
     : isInverted
-      ? "bg-gradient-to-b from-black/40 to-transparent backdrop-blur-[2px]"
-      : "bg-gradient-to-b from-white/60 to-transparent backdrop-blur-[2px]";
+      ? "bg-gradient-to-b from-black/40 to-transparent backdrop-blur-sm"
+      : "bg-white/5 backdrop-blur-sm";
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-[10000] overflow-visible transition-all duration-500 will-change-transform ${isHidden ? "translate-y-[-100%] opacity-0 pointer-events-none" : "translate-y-0 opacity-1"} ${!scrolled ? "border-b md:border-b-0 border-black/10" : ""} ${navBg}`}
+      className={`fixed top-0 left-0 right-0 z-[10000] overflow-visible transition-all duration-500 will-change-transform ${isHidden ? "translate-y-[-100%] opacity-0 pointer-events-none" : "translate-y-0 opacity-1"} ${navBg}`}
     >
+      <div 
+        className={`absolute top-0 left-0 right-0 h-16 z-[5] pointer-events-none flex items-center transition-all duration-300 ${!scrolled && isHomePage && !isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}
+      >
+        <div className="container flex items-center justify-between mx-auto px-4 md:px-8">
+          <div className="flex items-center">
+            <img src={logoLight} alt="" className="h-9 md:h-12 opacity-0 invisible object-contain" />
+            <div className="w-16 md:w-16" />
+            <img src={logo2ndMain} alt="" className="h-8 md:h-9 hidden md:block" />
+          </div>
+          <div className="hidden md:flex items-center">
+            <img 
+              src={gdgRevaLogo} 
+              alt="GDG REVA" 
+              className="h-7 md:h-8 w-auto object-contain mr-12" 
+            />
+          </div>
+        </div>
+      </div>
       <StaggeredMenu
         position="right"
         items={menuItems}
         socialItems={socialMenuItems}
         displaySocials
         displayItemNumbering
-        menuButtonColor={isInverted ? '#ffffff' : '#111111'}
+        menuButtonColor={(isMenuOpen) ? '#111111' : (isInverted ? '#ffffff' : '#111111')}
         openMenuButtonColor="#111111"
         changeMenuColorOnOpen
         colors={['#1A73E8', '#000000']}
         logoUrl={logoLight}
         accentColor="#1A73E8"
+        onMenuOpen={() => setIsMenuOpen(true)}
+        onMenuClose={() => setIsMenuOpen(false)}
         onItemClick={handleMenuItemClick}
         onLogoClick={handleLogoClick}
       />
