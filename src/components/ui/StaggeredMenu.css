@@ -53,6 +53,18 @@
   }
 }
 
+.sm-logo-spacer {
+  height: 44px;
+  width: 44px;
+}
+
+@media (min-width: 768px) {
+  .sm-logo-spacer {
+    height: 48px;
+    width: 48px;
+  }
+}
+
 .sm-toggle {
   position: relative;
   display: inline-flex;

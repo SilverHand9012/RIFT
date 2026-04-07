@@ -34,10 +34,10 @@ export const EVENT_INFO = {
  * Social media links
  */
 export const SOCIAL_LINKS = {
-  linkedin: "#",
+  linkedin: "https://www.linkedin.com/showcase/google-developer-groups/about/",
   whatsapp: "#",
-  twitter: "#",
-  instagram: "#",
+  twitter: "https://x.com/googledevgroups",
+  instagram: "https://www.instagram.com/reva_rift?igsh=dXp6aGRwN3o4bDJs",
 } as const;
 
 /**

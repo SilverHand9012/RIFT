@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logoLight from "@/assets/logo/2nd_main_3.png";
-import logo2ndMain from "@/assets/logo/reva-logo-black.svg";
 import gdgRevaLogo from "@/assets/logo/gdg-reva.svg";
+import naacLogo from "@/assets/logo/naac.svg";
+import revaUniversitySvg from "@/assets/logo/reva-university.svg";
 import StaggeredMenu, { StaggeredMenuItem } from "@/components/ui/StaggeredMenu";
 import { Linkedin, Instagram } from "lucide-react";
 
@@ -127,9 +128,9 @@ const Navbar = () => {
   }));
 
   const socialMenuItems = [
-    { label: "LinkedIn", link: "https://www.linkedin.com/company/gdg-reva", icon: <Linkedin className="w-5 h-5" /> },
-    { label: "X (Twitter)", link: "https://twitter.com/gdgoncampusreva", icon: <XLogo className="w-5 h-5" /> },
-    { label: "Instagram", link: "https://www.instagram.com/gdgoncampusreva/", icon: <Instagram className="w-5 h-5" /> },
+    { label: "LinkedIn", link: "https://www.linkedin.com/showcase/google-developer-groups/about/", icon: <Linkedin className="w-5 h-5" /> },
+    { label: "X (Twitter)", link: "https://x.com/googledevgroups", icon: <XLogo className="w-5 h-5" /> },
+    { label: "Instagram", link: "https://www.instagram.com/reva_rift?igsh=dXp6aGRwN3o4bDJs", icon: <Instagram className="w-5 h-5" /> },
   ];
 
   // Handle menu item clicks — find the original navLink and delegate to handleNavClick
@@ -155,19 +156,23 @@ const Navbar = () => {
       <div 
         className={`absolute top-0 left-0 right-0 h-16 z-[5] pointer-events-none flex items-center transition-all duration-300 ${!scrolled && isHomePage && !isMenuOpen ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-2"}`}
       >
-        <div className="container flex items-center justify-between mx-auto px-4 md:px-8">
-          <div className="flex items-center">
-            <img src={logoLight} alt="" className="h-9 md:h-12 opacity-0 invisible object-contain" />
-            <div className="w-16 md:w-16" />
-            <img src={logo2ndMain} alt="" className="h-8 md:h-9 hidden md:block" />
+        <div className="container relative flex items-center justify-between mx-auto px-4 md:px-8 h-full">
+          <div className="flex items-center gap-4 md:gap-6">
+            <img src={naacLogo} alt="NAAC A+" className="h-6 md:h-9 w-auto object-contain" />
+            <img src={revaUniversitySvg} alt="REVA University" className="h-6 md:h-9 w-auto object-contain" />
           </div>
-          <div className="hidden md:flex items-center">
+
+          {/* Center Logo */}
+          <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 hidden md:block">
             <img 
               src={gdgRevaLogo} 
               alt="GDG REVA" 
-              className="h-7 md:h-8 w-auto object-contain mr-12" 
+              className="h-7 md:h-8 w-auto object-contain" 
             />
           </div>
+
+          {/* Right Spacer for Menu Button alignment */}
+          <div className="hidden md:block w-[44px]" />
         </div>
       </div>
       <StaggeredMenu
@@ -182,6 +187,7 @@ const Navbar = () => {
         colors={['#1A73E8', '#000000']}
         logoUrl={logoLight}
         accentColor="#1A73E8"
+        hideLogo={!scrolled && isHomePage}
         onMenuOpen={() => setIsMenuOpen(true)}
         onMenuClose={() => setIsMenuOpen(false)}
         onItemClick={handleMenuItemClick}

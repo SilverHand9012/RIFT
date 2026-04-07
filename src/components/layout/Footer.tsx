@@ -29,13 +29,13 @@ const Footer = () => {
               <span>FAQ</span>
               <span className="text-xs">↗</span>
             </Link>
-            <Link
+            {/* <Link
               to="/sponsorship"
               className="flex items-center justify-between border-b border-foreground py-2 hover:text-primary transition-colors"
             >
               <span>Sponsorship</span>
               <span className="text-xs">↗</span>
-            </Link>
+            </Link> */}
             {/* <Link
               to="/jury"
               className="flex items-center justify-between border-b border-foreground py-2 hover:text-primary transition-colors"
@@ -91,7 +91,7 @@ const Footer = () => {
           <div className="flex items-center justify-center gap-3 flex-col md:flex-row">
             <div className="flex items-center gap-4 order-1 md:order-2">
               <a
-                href="https://www.linkedin.com/company/gdg-on-campus-reva-university-bengaluru-india/"
+                href="https://www.linkedin.com/showcase/google-developer-groups/about/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-70 transition-opacity"
@@ -100,7 +100,7 @@ const Footer = () => {
                 <img src={linkedinIcon} alt="LinkedIn" className="h-5 w-5 object-contain" />
               </a>
               <a
-                href="#"
+                href="https://x.com/googledevgroups"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-70 transition-opacity"
@@ -109,7 +109,7 @@ const Footer = () => {
                 <img src={xIcon} alt="X" className="h-5 w-5 object-contain" />
               </a>
               <a
-                href="#"
+                href="https://www.instagram.com/reva_rift?igsh=dXp6aGRwN3o4bDJs"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:opacity-70 transition-opacity"

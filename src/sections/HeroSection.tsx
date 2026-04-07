@@ -9,9 +9,30 @@ import logoFull from "@/assets/logo/2nd_main_3.png";
 import logo2ndMain from "@/assets/logo/reva-logo-black.svg";
 import gdgRevaLogo from "@/assets/logo/gdg-reva.svg";
 import partnerSampleLogo from "@/assets/images/partners/sample.svg";
+
+// Partner Logos for Hero Marquee
+import partnerLogo1 from "@/assets/images/partners/IMG_9220.JPG.webp";
+import partnerLogo2 from "@/assets/images/partners/idk01.webp";
+import partnerLogo3 from "@/assets/images/partners/kraft.webp";
+import partnerLogo4 from "@/assets/images/partners/logo.webp";
+import partnerLogo5 from "@/assets/images/partners/oscode.webp";
+
 import vectorTop from "@/assets/elements/vector-top.svg";
 import vectorBottom from "@/assets/elements/vector-bottom.svg";
-import MarqueeSection from "./MarqueeSection";
+import MarqueeSection, { MarqueeItem } from "./MarqueeSection";
+
+const heroMarqueeItems: MarqueeItem[] = [
+  { type: "icon", src: partnerLogo1 },
+  { type: "text", label: "REVA RIFT 2026" },
+  { type: "icon", src: partnerLogo2 },
+  { type: "text", label: "REVA RIFT 2026" },
+  { type: "icon", src: partnerLogo3 },
+  { type: "text", label: "REVA RIFT 2026" },
+  { type: "icon", src: partnerLogo4 },
+  { type: "text", label: "REVA RIFT 2026" },
+  { type: "icon", src: partnerLogo5 },
+  { type: "text", label: "REVA RIFT 2026" },
+];
 
 const partners = [
   { id: 1, name: "Partner 1", logo: partnerSampleLogo },
@@ -65,24 +86,18 @@ const HeroSection = () => {
       >
         
         {/* BLOCK 1: University & RIFT Logos */}
-        <div className="flex-1 w-full flex flex-col items-center justify-center gap-4 pt-12">
-          <div className="flex items-center justify-center gap-6 md:gap-10">
-            <img src={naacLogo} alt="NAAC A+" className="h-8 md:h-12 w-auto object-contain" />
-            <div className="h-8 md:h-10 w-[1.5px] invisible" />
-            <img src={revaUniversitySvg} alt="REVA University" className="h-8 md:h-12 w-auto object-contain" />
-          </div>
-
+        <div className="flex-1 w-full flex flex-col items-center justify-center gap-12 pt-32 sm:pt-48">
           <div className="flex items-center justify-center">
             <img 
               src={revaRiftSvg} 
               alt="REVA RIFT" 
-              className="w-[234px] h-[25px] sm:w-[341px] sm:h-[36px] object-contain" 
+              className="w-[280px] h-[30px] sm:w-[480px] sm:h-[50px] object-contain" 
             />
           </div>
         </div>
 
         {/* BLOCK 2: Heading & Subtitle */}
-        <div className="flex-1 w-full flex flex-col items-center justify-center gap-8 px-4 z-20">
+        <div className="flex-1 w-full flex flex-col items-center justify-center gap-12 px-4 z-20 mt-12 sm:mt-16">
           <h1
             className="hero-title text-center text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-7xl max-w-5xl mx-auto"
           >
@@ -100,7 +115,7 @@ const HeroSection = () => {
         </div>
 
         {/* BLOCK 3: CTA Buttons - ANIMATION KEPT AS REQUESTED */}
-        <div className="flex-1 w-full flex flex-col items-center justify-start pt-4 z-20">
+        <div className="flex-1 w-full flex flex-col items-center justify-start pt-12 sm:pt-20 z-20">
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
             initial={{ opacity: 0, y: 20 }}
@@ -123,41 +138,22 @@ const HeroSection = () => {
           </motion.div>
         </div>
 
-        {/* BLOCK 4: Organisers & Partners */}
-        <div className="flex-1 w-full flex flex-col items-center justify-start gap-8 sm:gap-12 pt-0 pb-16">
-          <div className="flex flex-col items-center gap-2 -mt-16 sm:-mt-32">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground">Organised by:</p>
-            <img 
-              src={gdgRevaLogo} 
-              alt="GDG REVA" 
-              className="w-[200px] h-[25px] sm:w-[325px] sm:h-[40px] object-contain" 
-            />
-            <p className="text-[10px] sm:text-xs font-semibold uppercase tracking-[0.1em] text-muted-foreground/80 mt-1">
-              in association with School of CSE
+        {/* BLOCK 4: Partners */}
+        <div className="flex-1 w-full flex flex-col items-center justify-start gap-8 sm:gap-12 pt-12 sm:pt-24 pb-16 mt-0">
+          <div className="flex flex-col items-center gap-1 -mt-16 sm:-mt-24 mb-4">
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-muted-foreground/80">
+              in association with
             </p>
-          </div>
-
-          <div className="w-full max-w-4xl">
-            <p className="text-xs font-bold uppercase tracking-[0.2em] text-muted-foreground text-center mb-6">Community Partners:</p>
-            <div className="flex flex-nowrap items-center justify-center gap-6 sm:gap-10 w-full px-2">
-              {partners.map((partner, index) => (
-                <img 
-                  key={partner.id} 
-                  src={partner.logo} 
-                  alt={partner.name} 
-                  className={`w-[100px] h-[40px] rounded-[2px] opacity-100 grayscale-0 sm:h-8 md:h-10 sm:w-auto sm:opacity-40 sm:grayscale object-contain hover:opacity-100 hover:grayscale-0 transition-all duration-300 ${
-                    index === 0 || index === partners.length - 1 ? "hidden sm:block" : "block"
-                  }`} 
-                />
-              ))}
-            </div>
+            <p className="text-base sm:text-xl font-bold uppercase tracking-[0.1em] text-black text-center">
+              School of Computer Science and Engineering
+            </p>
           </div>
         </div>
       </div>
 
       {/* Marquee pinned to the absolute bottom of the Hero page */}
       <div className="absolute bottom-0 left-0 right-0 z-20">
-        <MarqueeSection />
+        <MarqueeSection items={heroMarqueeItems} />
       </div>
     </section>
   );

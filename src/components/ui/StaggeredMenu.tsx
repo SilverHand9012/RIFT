@@ -24,6 +24,7 @@ export interface StaggeredMenuProps {
   displayItemNumbering?: boolean;
   className?: string;
   logoUrl?: string;
+  hideLogo?: boolean;
   menuButtonColor?: string;
   openMenuButtonColor?: string;
   accentColor?: string;
@@ -44,6 +45,7 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
   displayItemNumbering = true,
   className,
   logoUrl,
+  hideLogo = false,
   menuButtonColor = '#111',
   openMenuButtonColor = '#fff',
   changeMenuColorOnOpen = true,
@@ -300,16 +302,19 @@ export const StaggeredMenu: React.FC<StaggeredMenuProps> = ({
       <div className="sm-backdrop" ref={backdropRef} onClick={() => closeMenu()} />
 
       <header className="staggered-menu-header container px-4 md:px-8" aria-label="Main navigation header">
-        <div className="sm-logo" aria-label="Logo">
-          <a href="/" onClick={onLogoClick} aria-label="Go to homepage">
-            <img
-              src={logoUrl}
-              alt="REVA RIFT"
-              className="sm-logo-img"
-              draggable={false}
-            />
-          </a>
-        </div>
+        {!hideLogo && (
+          <div className="sm-logo" aria-label="Logo">
+            <a href="/" onClick={onLogoClick} aria-label="Go to homepage">
+              <img
+                src={logoUrl}
+                alt="REVA RIFT"
+                className="sm-logo-img"
+                draggable={false}
+              />
+            </a>
+          </div>
+        )}
+        {hideLogo && <div className="sm-logo-spacer" />}
         <button
           ref={toggleBtnRef}
           className="sm-toggle"

@@ -1,26 +1,33 @@
 import logoIconBlack from "@/assets/logo/alt_R_black.png";
 
-const items = [
-  { type: "text" as const, label: "REVA RIFT 2026" },
-  { type: "icon" as const },
-  { type: "text" as const, label: "4 DAYS OF INNOVATION" },
-  { type: "icon" as const },
-  { type: "text" as const, label: "500+ PARTICIPANTS" },
-  { type: "icon" as const },
-  { type: "text" as const, label: "BUILD • CREATE • DISRUPT" },
-  { type: "icon" as const },
+export interface MarqueeItem {
+  type: "text" | "icon";
+  label?: string;
+  src?: string;
+}
+
+const DEFAULT_ITEMS: MarqueeItem[] = [
+  { type: "text", label: "REVA RIFT 2026" },
+  { type: "icon" },
+  { type: "text", label: "4 DAYS OF INNOVATION" },
+  { type: "icon" },
+  { type: "text", label: "500+ PARTICIPANTS" },
+  { type: "icon" },
+  { type: "text", label: "BUILD • CREATE • DISRUPT" },
+  { type: "icon" },
 ];
 
 interface MarqueeSectionProps {
+  items?: MarqueeItem[];
   invertColors?: boolean;
 }
 
-const MarqueeSection = ({ invertColors = false }: MarqueeSectionProps) => {
+const MarqueeSection = ({ items = DEFAULT_ITEMS, invertColors = false }: MarqueeSectionProps) => {
 
   const renderItems = () =>
     items.map((item, i) =>
       item.type === "icon" ? (
-        <img key={i} src={logoIconBlack} alt="REVA RIFT" className={`h-11 mx-8 opacity-80 ${invertColors ? "invert" : ""}`} />
+        <img key={i} src={item.src || logoIconBlack} alt="REVA RIFT" className={`h-11 mx-8 opacity-80 ${invertColors ? "invert" : ""}`} />
       ) : (
         <span key={i} className={`mx-8 font-bold text-base md:text-lg tracking-widest whitespace-nowrap ${invertColors ? "text-white" : "text-foreground"}`}>
           {item.label}
