@@ -37,8 +37,8 @@ const MarqueeSection = ({ items = DEFAULT_ITEMS, invertColors = false }: Marquee
 
   return (
     <div className={`marquee-shell py-6 overflow-hidden ${invertColors ? "bg-black" : "bg-background border-y border-foreground/30"}`}>
-      <div className="marquee-content">
-        <div className="flex animate-marquee">
+      <div className="marquee-content flex">
+        <div className="flex w-max animate-marquee">
           <div className="flex items-center shrink-0">{renderItems()}</div>
           <div className="flex items-center shrink-0">{renderItems()}</div>
           <div className="flex items-center shrink-0">{renderItems()}</div>

@@ -243,7 +243,7 @@ const Navbar = () => {
             width: 'auto',
             objectFit: 'contain' as const,
             cursor: 'pointer',
-            zIndex: 15,
+            zIndex: 50,
             opacity: 0, // hidden initially, shown by RAF once positioned
             willChange: 'transform, opacity',
             pointerEvents: 'auto',

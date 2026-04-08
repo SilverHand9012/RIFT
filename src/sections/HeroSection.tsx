@@ -16,14 +16,15 @@ import partnerLogo2 from "@/assets/images/partners/idk01.webp";
 import partnerLogo3 from "@/assets/images/partners/kraft.webp";
 import partnerLogo4 from "@/assets/images/partners/logo.webp";
 import partnerLogo5 from "@/assets/images/partners/oscode.webp";
-import abcLogo from "@/assets/images/partners/abc.webp";
+import partnerLogo6 from "@/assets/images/partners/abc.webp";
 
 import vectorTop from "@/assets/elements/vector-top.svg";
 import vectorBottom from "@/assets/elements/vector-bottom.svg";
 import MarqueeSection, { MarqueeItem } from "./MarqueeSection";
-import ShatterImage from "@/components/animations/ShatterImage";
 
 const heroMarqueeItems: MarqueeItem[] = [
+  { type: "icon", src: logoFull },
+  { type: "text", label: "REVA RIFT 2026" },
   { type: "icon", src: partnerLogo1 },
   { type: "text", label: "REVA RIFT 2026" },
   { type: "icon", src: partnerLogo2 },
@@ -34,7 +35,7 @@ const heroMarqueeItems: MarqueeItem[] = [
   { type: "text", label: "REVA RIFT 2026" },
   { type: "icon", src: partnerLogo5 },
   { type: "text", label: "REVA RIFT 2026" },
-  { type: "icon", src: abcLogo },
+  { type: "icon", src: partnerLogo6 },
   { type: "text", label: "REVA RIFT 2026" },
 ];
 
@@ -65,32 +66,32 @@ const HeroSection = () => {
       className="relative h-screen min-h-[900px] border-b border-border overflow-hidden bg-white"
     >
       {/* Background Decor — own parallax, not affected by content fade */}
-      <ShatterImage 
+      <motion.img 
         src={vectorTop} 
+        alt="" 
         style={{ y: yTop }}
-        gridRows={8}
-        gridCols={8}
-        duration={1.8}
-        delay={0.1}
-        className="hidden md:block absolute top-0 right-0 w-[35vw] max-w-[600px] pointer-events-none z-0" 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="hidden md:block absolute top-0 right-0 w-[35vw] max-w-[600px] object-contain pointer-events-none z-0" 
       />
-      <ShatterImage 
+      <motion.img 
         src={vectorBottom} 
+        alt="" 
         style={{ y: yBottom }}
-        gridRows={8}
-        gridCols={8}
-        duration={1.8}
-        delay={0.3}
-        className="hidden md:block absolute bottom-0 left-0 w-[35vw] max-w-[600px] pointer-events-none z-0" 
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.2, ease: "easeOut" }}
+        className="hidden md:block absolute bottom-0 left-0 w-[35vw] max-w-[600px] object-contain pointer-events-none z-0" 
       />
 
       {/* Main hero content — No longer scroll-driven, static positioning */}
       <div
-        className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center justify-center"
+        className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center"
       >
         
         {/* BLOCK 1: University & RIFT Logos */}
-        <div className="flex-none w-full flex flex-col items-center justify-center gap-12 pt-0">
+        <div className="flex-1 w-full flex flex-col items-center justify-center gap-12 pt-32 sm:pt-48">
           <div className="flex items-center justify-center">
             <img 
               src={revaRiftSvg} 
@@ -101,7 +102,7 @@ const HeroSection = () => {
         </div>
 
         {/* BLOCK 2: Heading & Subtitle */}
-        <div className="flex-none w-full flex flex-col items-center justify-center gap-12 px-4 z-20 mt-12 sm:mt-16 pb-8 sm:pb-12">
+        <div className="flex-1 w-full flex flex-col items-center justify-center gap-6 sm:gap-8 px-4 z-20 mt-6 sm:mt-8">
           <h1
             className="hero-title text-center text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-7xl max-w-5xl mx-auto"
           >
@@ -118,9 +119,9 @@ const HeroSection = () => {
           </p>
         </div>
 
-        {/* BLOCK 4: Partners */}
-        <div className="flex-none w-full flex flex-col items-center justify-start gap-4 sm:gap-6 pt-0 pb-4 mt-0">
-          <div className="flex flex-col items-center gap-1 mb-4">
+        {/* BLOCK 3: Partners */}
+        <div className="flex-1 w-full flex flex-col items-center justify-start gap-8 sm:gap-12 pt-8 sm:pt-12 mt-0">
+          <div className="flex flex-col items-center gap-1 mb-0">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-muted-foreground/80">
               in association with
             </p>
@@ -130,8 +131,8 @@ const HeroSection = () => {
           </div>
         </div>
 
-        {/* BLOCK 3: CTA Buttons - ANIMATION KEPT AS REQUESTED */}
-        <div className="flex-none w-full flex flex-col items-center justify-start pt-8 sm:pt-12 z-20">
+        {/* BLOCK 4: CTA Buttons - ANIMATION KEPT AS REQUESTED */}
+        <div className="flex-1 w-full flex flex-col items-center justify-start pt-0 pb-16 z-20 -mt-4 sm:-mt-6">
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
             initial={{ opacity: 0, y: 20 }}
