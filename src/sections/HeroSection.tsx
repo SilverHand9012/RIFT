@@ -85,11 +85,11 @@ const HeroSection = () => {
 
       {/* Main hero content — No longer scroll-driven, static positioning */}
       <div
-        className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center"
+        className="relative z-10 container h-full px-4 max-w-7xl mx-auto flex flex-col items-center justify-center"
       >
         
         {/* BLOCK 1: University & RIFT Logos */}
-        <div className="flex-1 w-full flex flex-col items-center justify-center gap-12 pt-32 sm:pt-48">
+        <div className="flex-none w-full flex flex-col items-center justify-center gap-12 pt-0">
           <div className="flex items-center justify-center">
             <img 
               src={revaRiftSvg} 
@@ -100,7 +100,7 @@ const HeroSection = () => {
         </div>
 
         {/* BLOCK 2: Heading & Subtitle */}
-        <div className="flex-1 w-full flex flex-col items-center justify-center gap-12 px-4 z-20 mt-12 sm:mt-16">
+        <div className="flex-none w-full flex flex-col items-center justify-center gap-12 px-4 z-20 mt-12 sm:mt-16 pb-8 sm:pb-12">
           <h1
             className="hero-title text-center text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-7xl max-w-5xl mx-auto"
           >
@@ -117,8 +117,20 @@ const HeroSection = () => {
           </p>
         </div>
 
+        {/* BLOCK 4: Partners */}
+        <div className="flex-none w-full flex flex-col items-center justify-start gap-4 sm:gap-6 pt-0 pb-4 mt-0">
+          <div className="flex flex-col items-center gap-1 mb-4">
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-muted-foreground/80">
+              in association with
+            </p>
+            <p className="text-base sm:text-xl font-bold uppercase tracking-[0.1em] text-black text-center">
+              School of Computer Science and Engineering
+            </p>
+          </div>
+        </div>
+
         {/* BLOCK 3: CTA Buttons - ANIMATION KEPT AS REQUESTED */}
-        <div className="flex-1 w-full flex flex-col items-center justify-start pt-12 sm:pt-20 z-20">
+        <div className="flex-none w-full flex flex-col items-center justify-start pt-8 sm:pt-12 z-20">
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
             initial={{ opacity: 0, y: 20 }}
@@ -139,18 +151,6 @@ const HeroSection = () => {
               Explore Hackathons
             </Link>
           </motion.div>
-        </div>
-
-        {/* BLOCK 4: Partners */}
-        <div className="flex-1 w-full flex flex-col items-center justify-start gap-8 sm:gap-12 pt-12 sm:pt-24 pb-16 mt-0">
-          <div className="flex flex-col items-center gap-1 -mt-16 sm:-mt-24 mb-4">
-            <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-muted-foreground/80">
-              in association with
-            </p>
-            <p className="text-base sm:text-xl font-bold uppercase tracking-[0.1em] text-black text-center">
-              School of Computer Science and Engineering
-            </p>
-          </div>
         </div>
       </div>
 
