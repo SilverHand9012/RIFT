@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logoLight from "@/assets/logo/2nd_main_3.png";
 import gdgRevaLogo from "@/assets/logo/gdg-reva.svg";
@@ -30,6 +30,11 @@ const Navbar = () => {
   const navigate = useNavigate();
   const isHomePage = location.pathname === "/";
 
+  // Floating hero logo refs and state
+  const heroLogoRef = useRef<HTMLImageElement>(null);
+  const navContainerRef = useRef<HTMLElement>(null);
+  const scrollProgressRef = useRef(0);
+
   const [isHidden, setIsHidden] = useState(false);
 
   // Listen for event card expansion state to hide the navbar
@@ -45,6 +50,7 @@ const Navbar = () => {
 
   // Single RAF loop: poll window.scrollY (Lenis updates it) to detect
   // both "scrolled past 20px" and "navbar is over a dark section".
+  // Also drives the hero logo slide animation.
   useEffect(() => {
     let rafId: number;
     let lastScrolled = false;
@@ -72,6 +78,48 @@ const Navbar = () => {
       if (overlapping !== lastDark) {
         lastDark = overlapping;
         setIsDark(overlapping);
+      }
+
+      // Drive hero logo scroll animation (slide from right to left)
+      // Animate over the first 350px of scroll — desktop only  
+      if (heroLogoRef.current && window.innerWidth >= 768) {
+        const progress = Math.min(sy / 350, 1);
+        scrollProgressRef.current = progress;
+
+        // Smooth easeInOutQuart for buttery slide
+        const eased = progress < 0.5
+          ? 8 * Math.pow(progress, 4)
+          : 1 - Math.pow(-2 * progress + 2, 4) / 2;
+
+        // Find the menu toggle button and the logo spacer to compute travel distance
+        const toggle = document.querySelector('.sm-toggle') as HTMLElement;
+        const spacer = document.querySelector('.sm-logo-spacer, .sm-logo') as HTMLElement;
+        
+        if (toggle && spacer) {
+          const toggleRect = toggle.getBoundingClientRect();
+          const spacerRect = spacer.getBoundingClientRect();
+          const logoWidth = heroLogoRef.current.offsetWidth || 48;
+          
+          // Start position: to the left of the menu toggle
+          const startX = toggleRect.left - logoWidth - 16;
+          // End position: at the spacer slot (left side of navbar)
+          const endX = spacerRect.left;
+          
+          // Target position from easing
+          const targetX = startX + (endX - startX) * eased;
+
+          // LERP for extra smoothness (damped follow)
+          const prev = parseFloat(heroLogoRef.current.dataset.currentX || String(startX));
+          const lerpFactor = 0.18;
+          const currentX = prev + (targetX - prev) * lerpFactor;
+          heroLogoRef.current.dataset.currentX = String(currentX);
+          
+          heroLogoRef.current.style.transform = `translateX(${currentX}px)`;
+          heroLogoRef.current.style.opacity = '1';
+        }
+      } else if (heroLogoRef.current) {
+        // Hide on mobile
+        heroLogoRef.current.style.opacity = '0';
       }
 
       rafId = requestAnimationFrame(tick);
@@ -175,6 +223,34 @@ const Navbar = () => {
           <div className="hidden md:block w-[44px]" />
         </div>
       </div>
+
+      {/* Floating Hero Logo — desktop only, slides from right (near menu) to left on scroll */}
+      {isHomePage && (
+        <img
+          ref={heroLogoRef}
+          src={logoLight}
+          alt="RIFT Logo"
+          onClick={handleLogoClick}
+          className="hero-floating-logo"
+          draggable={false}
+          style={{
+            position: 'absolute',
+            top: '50%',
+            left: 0,
+            transform: 'translateX(0)',
+            marginTop: '-24px',
+            height: '48px',
+            width: 'auto',
+            objectFit: 'contain' as const,
+            cursor: 'pointer',
+            zIndex: 15,
+            opacity: 0, // hidden initially, shown by RAF once positioned
+            willChange: 'transform, opacity',
+            pointerEvents: 'auto',
+          }}
+        />
+      )}
+
       <StaggeredMenu
         position="right"
         items={menuItems}
@@ -187,7 +263,7 @@ const Navbar = () => {
         colors={['#1A73E8', '#000000']}
         logoUrl={logoLight}
         accentColor="#1A73E8"
-        hideLogo={!scrolled && isHomePage}
+        hideLogo={isHomePage}
         onMenuOpen={() => setIsMenuOpen(true)}
         onMenuClose={() => setIsMenuOpen(false)}
         onItemClick={handleMenuItemClick}

@@ -20,6 +20,7 @@ import partnerLogo5 from "@/assets/images/partners/oscode.webp";
 import vectorTop from "@/assets/elements/vector-top.svg";
 import vectorBottom from "@/assets/elements/vector-bottom.svg";
 import MarqueeSection, { MarqueeItem } from "./MarqueeSection";
+import ShatterImage from "@/components/animations/ShatterImage";
 
 const heroMarqueeItems: MarqueeItem[] = [
   { type: "icon", src: partnerLogo1 },
@@ -61,23 +62,23 @@ const HeroSection = () => {
       className="relative h-screen min-h-[900px] border-b border-border overflow-hidden bg-white"
     >
       {/* Background Decor — own parallax, not affected by content fade */}
-      <motion.img 
+      <ShatterImage 
         src={vectorTop} 
-        alt="" 
         style={{ y: yTop }}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
-        className="hidden md:block absolute top-0 right-0 w-[35vw] max-w-[600px] object-contain pointer-events-none z-0" 
+        gridRows={8}
+        gridCols={8}
+        duration={1.8}
+        delay={0.1}
+        className="hidden md:block absolute top-0 right-0 w-[35vw] max-w-[600px] pointer-events-none z-0" 
       />
-      <motion.img 
+      <ShatterImage 
         src={vectorBottom} 
-        alt="" 
         style={{ y: yBottom }}
-        initial={{ opacity: 0, scale: 0.8 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.2, ease: "easeOut" }}
-        className="hidden md:block absolute bottom-0 left-0 w-[35vw] max-w-[600px] object-contain pointer-events-none z-0" 
+        gridRows={8}
+        gridCols={8}
+        duration={1.8}
+        delay={0.3}
+        className="hidden md:block absolute bottom-0 left-0 w-[35vw] max-w-[600px] pointer-events-none z-0" 
       />
 
       {/* Main hero content — No longer scroll-driven, static positioning */}
