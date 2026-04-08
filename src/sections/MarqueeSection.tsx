@@ -41,6 +41,8 @@ const MarqueeSection = ({ items = DEFAULT_ITEMS, invertColors = false }: Marquee
         <div className="flex animate-marquee">
           <div className="flex items-center shrink-0">{renderItems()}</div>
           <div className="flex items-center shrink-0">{renderItems()}</div>
+          <div className="flex items-center shrink-0">{renderItems()}</div>
+          <div className="flex items-center shrink-0">{renderItems()}</div>
         </div>
       </div>
     </div>

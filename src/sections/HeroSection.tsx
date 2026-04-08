@@ -16,6 +16,7 @@ import partnerLogo2 from "@/assets/images/partners/idk01.webp";
 import partnerLogo3 from "@/assets/images/partners/kraft.webp";
 import partnerLogo4 from "@/assets/images/partners/logo.webp";
 import partnerLogo5 from "@/assets/images/partners/oscode.webp";
+import abcLogo from "@/assets/images/partners/abc.webp";
 
 import vectorTop from "@/assets/elements/vector-top.svg";
 import vectorBottom from "@/assets/elements/vector-bottom.svg";
@@ -31,6 +32,8 @@ const heroMarqueeItems: MarqueeItem[] = [
   { type: "icon", src: partnerLogo4 },
   { type: "text", label: "REVA RIFT 2026" },
   { type: "icon", src: partnerLogo5 },
+  { type: "text", label: "REVA RIFT 2026" },
+  { type: "icon", src: abcLogo },
   { type: "text", label: "REVA RIFT 2026" },
 ];
 
