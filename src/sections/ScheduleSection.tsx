@@ -106,9 +106,9 @@ const ScheduleSection = () => {
   }, []);
 
   return (
-    <section id="schedule" className="py-32 border-b border-border" ref={sectionRef}>
+    <section id="schedule" className="py-16 md:py-32 border-b border-border" ref={sectionRef}>
       <div className="container">
-        <div className="text-center mb-24" data-schedule-heading>
+        <div className="text-center mb-12 md:mb-24" data-schedule-heading>
           <h2 className="section-title mb-6">
             Event <span className="text-primary">Schedule</span>
           </h2>
@@ -128,7 +128,7 @@ const ScheduleSection = () => {
             style={{ height: "0%" }}
           />
 
-          <div className="flex flex-col gap-24">
+          <div className="flex flex-col gap-14 md:gap-24">
             {phases.map((phase, i) => (
               <div
                 key={i}

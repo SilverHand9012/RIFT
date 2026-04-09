@@ -447,14 +447,8 @@ h1, h2, h3 {
   transition-duration: 300ms;
 }
 
-/* Floating hero logo — desktop only */
+/* Floating hero logo */
 .hero-floating-logo {
-  display: none !important;
+  display: block !important;
   transition: none !important; /* override global * transition — RAF drives this */
-}
-
-@media (min-width: 768px) {
-  .hero-floating-logo {
-    display: block !important;
-  }
 }

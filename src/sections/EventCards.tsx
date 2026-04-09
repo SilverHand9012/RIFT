@@ -205,10 +205,10 @@ const EventCards = ({ hideExploreButton = false }: EventCardsProps) => {
   });
 
   return (
-    <section className="py-20 md:py-32 bg-black relative text-white">
+    <section className="py-14 md:py-32 bg-black relative text-white">
       <div className="container mx-auto px-4 max-w-7xl">
         {/* Header */}
-        <div className="text-center mb-10 flex flex-col items-center">
+        <div className="text-center mb-6 md:mb-10 flex flex-col items-center">
           <motion.h2
             className="text-4xl md:text-5xl font-semibold mb-3 font-heading"
             initial={{ opacity: 0, y: 20 }}
@@ -232,7 +232,7 @@ const EventCards = ({ hideExploreButton = false }: EventCardsProps) => {
 
         {/* Filters */}
         <motion.div
-          className="flex flex-wrap items-center justify-center gap-2.5 mb-12"
+          className="flex flex-wrap items-center justify-center gap-2.5 mb-8 md:mb-12"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -257,7 +257,7 @@ const EventCards = ({ hideExploreButton = false }: EventCardsProps) => {
         <AnimatePresence mode="wait">
           <motion.div
             key={activeFilter}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-10"
             initial={{ opacity: 0, y: 15 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -10 }}

@@ -63,7 +63,7 @@ const HeroSection = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative h-screen min-h-[900px] border-b border-border overflow-hidden bg-white"
+      className="relative h-screen min-h-[680px] md:min-h-[900px] border-b border-border overflow-hidden bg-white"
     >
       {/* Background Decor — own parallax, not affected by content fade */}
       <motion.img 
@@ -91,7 +91,7 @@ const HeroSection = () => {
       >
         
         {/* BLOCK 1: University & RIFT Logos */}
-        <div className="flex-1 w-full flex flex-col items-center justify-center gap-12 pt-32 sm:pt-48">
+        <div className="flex-1 w-full flex flex-col items-center justify-center gap-6 sm:gap-12 pt-20 sm:pt-48">
           <div className="flex items-center justify-center">
             <img 
               src={revaRiftSvg} 
@@ -102,7 +102,7 @@ const HeroSection = () => {
         </div>
 
         {/* BLOCK 2: Heading & Subtitle */}
-        <div className="flex-1 w-full flex flex-col items-center justify-center gap-6 sm:gap-8 px-4 z-20 mt-6 sm:mt-8">
+        <div className="flex-1 w-full flex flex-col items-center justify-center gap-4 sm:gap-8 px-4 z-20 mt-2 sm:mt-8">
           <h1
             className="hero-title text-center text-4xl sm:text-5xl md:text-7xl lg:text-7xl xl:text-7xl max-w-5xl mx-auto"
           >
@@ -120,7 +120,7 @@ const HeroSection = () => {
         </div>
 
         {/* BLOCK 3: Partners */}
-        <div className="flex-1 w-full flex flex-col items-center justify-start gap-8 sm:gap-12 pt-8 sm:pt-12 mt-0">
+        <div className="flex-1 w-full flex flex-col items-center justify-start gap-4 sm:gap-12 pt-4 sm:pt-12 mt-0">
           <div className="flex flex-col items-center gap-1 mb-0">
             <p className="text-xs sm:text-sm font-bold uppercase tracking-[0.1em] text-muted-foreground/80">
               in association with
@@ -132,7 +132,7 @@ const HeroSection = () => {
         </div>
 
         {/* BLOCK 4: CTA Buttons - ANIMATION KEPT AS REQUESTED */}
-        <div className="flex-1 w-full flex flex-col items-center justify-start pt-0 pb-16 z-20 -mt-4 sm:-mt-6">
+        <div className="flex-1 w-full flex flex-col items-center justify-start pt-0 pb-10 sm:pb-16 z-20 -mt-2 sm:-mt-6">
           <motion.div
             className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
             initial={{ opacity: 0, y: 20 }}

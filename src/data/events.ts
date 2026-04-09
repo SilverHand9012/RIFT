@@ -87,7 +87,7 @@ export const eventsData = [
   },
   {
     id: 8,
-    name: "Agentic AI",
+    name: "Agentic AI Systems",
     description: "Meet your digital superbrain.",
     fullDescription:
       "Meet your digital superbrain.\n\nThis workshop introduces participants to the world of Generative AI and how it is reshaping the way we build, create, and interact with technology. It provides an accessible, entry-level exploration of how advanced AI models—such as Gemini—process information, generate content, and assist in complex tasks.\n\nParticipants will discover how Generative AI can write code, generate creative content, assist in problem-solving, and enhance productivity across industries. The session will also highlight how developers and innovators can integrate GenAI capabilities into real-world applications.",

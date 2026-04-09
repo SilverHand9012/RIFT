@@ -2,6 +2,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import logoLight from "@/assets/logo/2nd_main_3.png";
 import gdgRevaLogo from "@/assets/logo/gdg-reva.svg";
+import mobileGdgLogo from "@/assets/logo/mobile-gdg-logo.svg";
 import naacLogo from "@/assets/logo/naac.svg";
 import revaUniversitySvg from "@/assets/logo/reva-university.svg";
 import StaggeredMenu, { StaggeredMenuItem } from "@/components/ui/StaggeredMenu";
@@ -81,8 +82,8 @@ const Navbar = () => {
       }
 
       // Drive hero logo scroll animation (slide from right to left)
-      // Animate over the first 350px of scroll — desktop only  
-      if (heroLogoRef.current && window.innerWidth >= 768) {
+      // Animate over the first 350px of scroll
+      if (heroLogoRef.current) {
         const progress = Math.min(sy / 350, 1);
         scrollProgressRef.current = progress;
 
@@ -98,10 +99,10 @@ const Navbar = () => {
         if (toggle && spacer) {
           const toggleRect = toggle.getBoundingClientRect();
           const spacerRect = spacer.getBoundingClientRect();
-          const logoWidth = heroLogoRef.current.offsetWidth || 48;
+          const logoWidth = heroLogoRef.current.offsetWidth || (window.innerWidth < 768 ? 36 : 48);
           
           // Start position: to the left of the menu toggle
-          const startX = toggleRect.left - logoWidth - 16;
+          const startX = toggleRect.left - logoWidth + 2;
           // End position: at the spacer slot (left side of navbar)
           const endX = spacerRect.left;
           
@@ -115,11 +116,12 @@ const Navbar = () => {
           heroLogoRef.current.dataset.currentX = String(currentX);
           
           heroLogoRef.current.style.transform = `translateX(${currentX}px)`;
+          const isMobile = window.innerWidth < 768;
+          const currentHeight = isMobile ? 36 : 48;
+          heroLogoRef.current.style.height = `${currentHeight}px`;
+          heroLogoRef.current.style.marginTop = `-${currentHeight / 2}px`;
           heroLogoRef.current.style.opacity = '1';
         }
-      } else if (heroLogoRef.current) {
-        // Hide on mobile
-        heroLogoRef.current.style.opacity = '0';
       }
 
       rafId = requestAnimationFrame(tick);
@@ -238,7 +240,6 @@ const Navbar = () => {
             top: '50%',
             left: 0,
             transform: 'translateX(0)',
-            marginTop: '-24px',
             height: '48px',
             width: 'auto',
             objectFit: 'contain' as const,
@@ -250,6 +251,16 @@ const Navbar = () => {
           }}
         />
       )}
+
+      {/* Mobile GDG Logo — sits near the menu icon, visible only on mobile */}
+      <div className={`absolute top-0 right-[85px] h-16 flex items-center z-[15] md:hidden transition-all duration-300 ${!scrolled && isHomePage && !isMenuOpen ? "opacity-100 translate-y-0 pointer-events-auto" : "opacity-0 -translate-y-2 pointer-events-none"}`}>
+        <img
+          src={mobileGdgLogo}
+          alt="GDG on Campus REVA"
+          className="h-5 w-auto object-contain"
+          draggable={false}
+        />
+      </div>
 
       <StaggeredMenu
         position="right"

@@ -7,10 +7,10 @@ const AboutSection = () => {
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="about" className="py-24 border-b border-border" ref={ref}>
+    <section id="about" className="py-14 md:py-24 border-b border-border" ref={ref}>
       <div className="container">
         <motion.div
-          className="max-w-3xl mx-auto text-center mb-12"
+          className="max-w-3xl mx-auto text-center mb-8 md:mb-12"
           initial={{ opacity: 0, y: 24 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}

@@ -35,10 +35,10 @@ const WhoShouldJoinSection = () => {
     ));
 
   return (
-    <section className="pt-32 pb-0" ref={ref}>
+    <section className="pt-16 md:pt-32 pb-0" ref={ref}>
       <div className="container">
         <motion.div
-          className="text-center mb-20"
+          className="text-center mb-10 md:mb-20"
           initial={{ opacity: 0, y: 40 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.7 }}
