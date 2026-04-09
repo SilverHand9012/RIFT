@@ -141,14 +141,14 @@ const HeroSection = () => {
           >
             <Link
               to="/workshops"
-              className="btn-shine flex-1 inline-flex items-center justify-center rounded-full font-semibold text-[11px] sm:text-sm w-full sm:w-60 px-1 sm:px-8 py-2.5 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative text-center"
+              className="btn-shine flex-1 sm:flex-none inline-flex items-center justify-center rounded-full font-semibold text-[11px] sm:text-sm w-full sm:w-60 px-1 sm:px-8 py-2.5 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative text-center"
             >
               Explore Workshops
             </Link>
 
             <Link
               to="/events"
-              className="btn-shine flex-1 inline-flex items-center justify-center rounded-full font-semibold text-[11px] sm:text-sm w-full sm:w-60 px-1 sm:px-8 py-2.5 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative text-center"
+              className="btn-shine flex-1 sm:flex-none inline-flex items-center justify-center rounded-full font-semibold text-[11px] sm:text-sm w-full sm:w-60 px-1 sm:px-8 py-2.5 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative text-center"
             >
               Explore Hackathons
             </Link>
