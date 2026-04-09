@@ -132,23 +132,23 @@ const HeroSection = () => {
         </div>
 
         {/* BLOCK 4: CTA Buttons - ANIMATION KEPT AS REQUESTED */}
-        <div className="flex-1 w-full flex flex-col items-center justify-start pt-0 pb-10 sm:pb-16 z-20 -mt-2 sm:-mt-6">
+        <div className="flex-1 w-full flex flex-col items-center justify-start pt-0 pb-10 sm:pb-16 z-20 -mt-2 sm:-mt-6 px-4">
           <motion.div
-            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-8"
+            className="flex flex-row items-center justify-center gap-3 sm:gap-8 w-full max-w-[340px] sm:max-w-none mx-auto"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.3 }}
           >
             <Link
               to="/workshops"
-              className="btn-shine inline-flex items-center justify-center rounded-full font-semibold text-xs sm:text-sm w-48 sm:w-60 px-8 py-2 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative"
+              className="btn-shine flex-1 inline-flex items-center justify-center rounded-full font-semibold text-[11px] sm:text-sm w-full sm:w-60 px-1 sm:px-8 py-2.5 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative text-center"
             >
               Explore Workshops
             </Link>
 
             <Link
               to="/events"
-              className="btn-shine inline-flex items-center justify-center rounded-full font-semibold text-xs sm:text-sm w-48 sm:w-60 px-8 py-2 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative"
+              className="btn-shine flex-1 inline-flex items-center justify-center rounded-full font-semibold text-[11px] sm:text-sm w-full sm:w-60 px-1 sm:px-8 py-2.5 sm:py-3 border-2 border-primary bg-primary text-primary-foreground transition-all duration-200 hover:bg-background hover:text-primary hover:border-primary relative text-center"
             >
               Explore Hackathons
             </Link>
