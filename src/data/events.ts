@@ -6,6 +6,7 @@ import katha from "@/assets/images/event-cards/katha.webp";
 import hackAlgo from "@/assets/images/event-cards/hack.algo.webp";
 import stitchImage from "@/assets/images/event-cards/sticth.webp";
 import agenticAiImage from "@/assets/images/event-cards/agentic-ai.webp";
+import ideathonImage from "@/assets/images/event-cards/Ideathon.webp";
 
 export const eventsData = [
   {
@@ -103,5 +104,19 @@ export const eventsData = [
       { title: "Agent Building", timeString: "09 Apr 26, 03:30 PM", dateRange: "09 Apr" },
       { title: "Showcase", timeString: "09 Apr 26, 04:30 PM", dateRange: "09 Apr" },
     ],
+  },
+  {
+    id: 9,
+    name: "Innovolt – Ideathon",
+    description: "Scope x GDG x IEEE",
+    fullDescription:
+      "We are excited to announce Innovolt, an innovation-driven Ideathon organized by SCOPE in collaboration with Google Developer Groups (GDG) and IEEE, focused on solving real-world problems through hardware and engineering solutions ⚡\n\nBe a part of this opportunity to turn your ideas into impactful solutions and showcase your creativity 💡\n\nTracks Include:\n• Healthcare\n• Environment and Sustainability\n• Smart Power and Energy Consumption\n• Smart Mobility and Transportation\n• Workplace Safety\n\n💡 Problem statements will be given on the spot – come ready to think, build, and innovate!",
+    phase: "Phase III",
+    type: "Hackathons",
+    date: "April 24, 2026",
+    time: "9:00 AM - 4:00 PM",
+    venue: "Rangasthala, SVB Block",
+    registrationLink: "https://docs.google.com/forms/u/3/d/e/1FAIpQLSfcbhyKANpIqMWIK8Hae1pWbfCGQx7KIv3nBvNqOGW72EhHYw/viewform",
+    image: ideathonImage,
   },
 ];

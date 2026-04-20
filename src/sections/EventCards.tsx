@@ -84,12 +84,12 @@ function EventCard({ card }: { card: (typeof eventsData)[number] }) {
 function ExpandedEventView({ card }: { card: (typeof eventsData)[number] }) {
   return (
     <div className="flex flex-col w-full min-h-full bg-[#0B1221] text-white">
-      {/* Header Image with fade */}
-      <div className="w-full h-[260px] md:h-[380px] overflow-hidden relative flex-shrink-0 group bg-black/40">
+      {/* Header Image with consistent aspect ratio */}
+      <div className="w-full aspect-video overflow-hidden relative flex-shrink-0 group bg-black/40">
         <img
           src={card.image}
           alt={card.name}
-          className="w-full h-full object-contain object-center p-4"
+          className="w-full h-full object-cover object-top"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[#0B1221] via-transparent to-[#0B1221]/40 opacity-90" />
       </div>
